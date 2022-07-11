@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:42:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/09 16:27:33 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:42:19 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,39 @@ static int count_words(char const *s, char c)
 	return (res);
 }
 
+static int	str_len(char *str, char c)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx] != c && str[idx] != '\0')
+		idx++;
+	return (idx);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		words_cnt;
 	char	**res;
+	int		words_idx;
+	int		str_idx;
+
+	words_idx = 0;
+	str_idx = 0;
 	
 	words_cnt = count_words(s, c);
 	res = malloc(sizeof(char*) * (words_cnt + 1));
-
+	if (!res)
+		return (res);
+	while (words_idx < words_cnt)
+	{				
+		while (s[str_idx] != c)
+			str_idx++;
+		res[words_idx] = malloc(sizeof(char) * (str_len(s + str_idx, c) + 1));
+		ft_memcpy(res[words_idx], s + str_idx, str_len(s + str_idx, c));
+		res[words_idx][str_len(s + str_idx, c) - 1] = '\0';
+		words_idx++;
+	}
+	res[words_idx] = 0;
+	return (res);
 }
