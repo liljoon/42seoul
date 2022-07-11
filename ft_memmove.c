@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:29:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 15:56:12 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/11 22:16:07 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	idx;
 

@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:31:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 16:32:16 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/11 22:18:06 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
 	write(fd, "\n", 1);
