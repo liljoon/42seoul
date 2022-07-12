@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:55:32 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 16:58:06 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:11:12 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstsize(t_list *lst)
 
 	cnt = 0;
 	temp = lst;
-	while(!temp)
+	while (!temp)
 	{
 		cnt++;
 		temp = temp->next;

@@ -6,15 +6,15 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:43:01 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/08 19:13:05 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:09:44 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int num_length(long long n)
+static int	num_length(long long n)
 {
-	int digit;
+	int	digit;
 
 	digit = 0;
 	while (n != 0)
@@ -46,7 +46,7 @@ char	*ft_itoa(int n)
 		res = malloc(digit + 1);
 		idx = digit;
 	}
-	if(!res)
+	if (!res)
 		return (res);
 	res[idx--] = '\0';
 	while (long_n != 0)

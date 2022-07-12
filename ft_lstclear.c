@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:25:07 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 17:29:27 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:11:42 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*temp;
 	t_list	*next_node;
-	
+
 	temp = *lst;
 	while (!temp)
 	{

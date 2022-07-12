@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 19:06:11 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 22:38:16 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:11:23 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (!it)
 	{
 		temp = ft_lstnew(f(it->content));
-		if	(!temp)
+		if (!temp)
 		{
 			ft_lstclear(res, del);
 			return (NULL);

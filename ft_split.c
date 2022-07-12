@@ -6,18 +6,18 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:42:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 15:42:19 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:10:52 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int	flag;
 	int	idx;
-	int res;
-	
+	int	res;
+
 	res = 0;
 	idx = 0;
 	flag = 0;
@@ -54,9 +54,8 @@ char	**ft_split(char const *s, char c)
 
 	words_idx = 0;
 	str_idx = 0;
-	
 	words_cnt = count_words(s, c);
-	res = malloc(sizeof(char*) * (words_cnt + 1));
+	res = malloc(sizeof(char *) * (words_cnt + 1));
 	if (!res)
 		return (res);
 	while (words_idx < words_cnt)
