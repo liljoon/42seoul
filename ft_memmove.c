@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:29:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 22:16:07 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:53:08 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			idx--;
 		}
 	}
+	return (dst);
 }
