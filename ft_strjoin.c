@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:44:40 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/08 17:01:01 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 14:50:38 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	idx;
 	char	*p;
 
+	if (!s1 || !s2)
+		return (NULL);
 	p = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (p == NULL)
 		return (NULL);
@@ -32,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	idx = 0;
 	while (s2[idx] != '\0')
 	{
-		p[idx_p] = s1[idx];
+		p[idx_p] = s2[idx];
 		idx++;
 		idx_p++;
 	}

@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:49:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 18:51:08 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:17:43 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	len(char *s)
+static int	len(const char *s)
 {
 	int	cnt;
 

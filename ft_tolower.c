@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:14:20 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 17:19:26 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:55:09 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c - 32);
+		return (c + 32);
 	else
 		return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:19:45 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 17:37:00 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:22:45 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char	*p;
+	const char	*p;
 
 	p = s;
 	while (*p != '\0')
 	{
 		if (*p == (char)c)
-			return (p);
+			return ((char *)p);
 		p++;
 	}
 	if (c == '\0')
-		return (p);
+		return ((char *)p);
 	else
 		return (NULL);
 }

@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:49:25 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 15:57:26 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:14:12 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	length_str(char *str)
+static size_t	length_str(const char *str)
 {
 	size_t	idx;
 

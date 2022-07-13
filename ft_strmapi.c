@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:51:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/11 15:55:33 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:31:08 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	idx;
 	char			*res;
 
+	if (!s)
+		return (NULL);
 	idx = 0;
 	res = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!res)

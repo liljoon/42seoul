@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:43:01 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/12 16:09:44 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:30:33 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	num_length(long long n)
 {
 	int	digit;
 
+	if (n == 0)
+		return (1);
 	digit = 0;
 	while (n != 0)
 	{
@@ -49,9 +51,10 @@ char	*ft_itoa(int n)
 	if (!res)
 		return (res);
 	res[idx--] = '\0';
+	res[idx] = '0';
 	while (long_n != 0)
 	{
-		res[idx] = long_n % 10;
+		res[idx] = long_n % 10 + '0';
 		long_n /= 10;
 		idx--;
 	}

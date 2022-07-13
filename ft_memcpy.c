@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:16:38 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 15:55:57 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:50:30 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	idx;
 
+	if (!dst && !src)
+		return (dst);
 	idx = 0;
 	while (idx < n)
 	{

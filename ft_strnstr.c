@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:13:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 18:34:30 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:17:13 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 			idx2++;
 		}
 		if (idx2 == ft_strlen(needle))
-			return (haystack + idx);
+			return ((char *)(haystack + idx));
 		idx++;
 	}
 	return (NULL);

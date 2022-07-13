@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:11:23 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 17:19:20 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:54:53 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c + 32);
+		return (c - 32);
 	else
 		return (c);
 }

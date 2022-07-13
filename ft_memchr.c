@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:43:47 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 17:58:48 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:16:06 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (idx < n)
 	{
 		if (*((unsigned char *)s + idx) == (unsigned char)c)
-			return (s + idx);
+			return ((void *)(s + idx));
 		idx++;
 	}
 	return (NULL);
