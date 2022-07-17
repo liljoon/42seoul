@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 15:29:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/13 14:05:14 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/14 21:13:21 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		idx = 0;
 		while (idx < len)
-		{
-			((unsigned char *)dst)[idx] = ((unsigned char *)src)[idx];
-			idx++;
-		}
+			((unsigned char *)dst)[idx] = ((unsigned char *)src)[idx++];
 	}
 	else
 	{
