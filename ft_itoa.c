@@ -6,11 +6,28 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:43:01 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/13 15:30:33 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/18 12:53:24 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static char	*setting(int n, int digit, int *idx)
+{
+	char	*res;
+
+	if (n < 0)
+	{
+		res = malloc(digit + 2);
+		*idx = digit + 1;
+	}
+	else
+	{
+		res = malloc(digit + 1);
+		*idx = digit;
+	}
+	return (res);
+}
 
 static int	num_length(long long n)
 {
@@ -38,16 +55,7 @@ char	*ft_itoa(int n)
 	if (long_n < 0)
 		long_n *= -1;
 	digit = num_length(long_n);
-	if (n < 0)
-	{
-		res = malloc(digit + 2);
-		idx = digit + 1;
-	}
-	else
-	{
-		res = malloc(digit + 1);
-		idx = digit;
-	}
+	res = setting(n, digit, &idx);
 	if (!res)
 		return (res);
 	res[idx--] = '\0';
