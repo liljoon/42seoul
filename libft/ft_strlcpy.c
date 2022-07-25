@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 16:58:22 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/12 16:07:11 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/04/17 16:11:07 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/21 16:24:17 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
-	t_list	*temp;
+	size_t	idx;
 
-	while (!(temp->next))
+	idx = 0;
+	if (size != 0)
 	{
-		temp = temp->next;
+		while (idx < size - 1 && src[idx] != '\0')
+		{
+			dst[idx] = src[idx];
+			idx++;
+		}
+		dst[idx] = '\0';
 	}
-	return (temp);
+	while (src[idx] != '\0')
+		idx++;
+	return (idx);
 }

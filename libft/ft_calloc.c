@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 17:10:11 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/12 16:10:20 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 18:42:55 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/21 14:13:00 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_list	*last;
+	void	*p;
 
-	last = ft_lstlast(*lst);
-	last->next = new;
+	if (count == SIZE_MAX && size == SIZE_MAX)
+		return (NULL);
+	p = malloc(count * size);
+	if (p == NULL)
+		return (NULL);
+	ft_bzero(p, size * count);
+	return (p);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 16:55:32 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/12 16:11:12 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/06 16:51:03 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/19 21:53:37 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+size_t	ft_strlen(const char *s)
 {
-	t_list	*temp;
-	int		cnt;
+	size_t	idx;
 
-	cnt = 0;
-	temp = lst;
-	while (!temp)
-	{
-		cnt++;
-		temp = temp->next;
-	}
-	return (cnt);
+	idx = 0;
+	while (s[idx] != '\0')
+		idx++;
+	return (idx);
 }

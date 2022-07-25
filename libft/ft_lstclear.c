@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:51:03 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/07 16:11:08 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/11 17:25:07 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/19 19:09:33 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	int	idx;
+	t_list	*temp;
+	t_list	*next_node;
 
-	idx = 0;
-	while (s[idx] != '\0')
-		idx++;
-	return (idx);
+	temp = *lst;
+	while (temp)
+	{
+		next_node = temp->next;
+		ft_lstdelone(temp, del);
+		temp = next_node;
+	}
+	*lst = NULL;
 }

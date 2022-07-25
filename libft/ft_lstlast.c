@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 21:37:45 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/13 14:48:45 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/11 16:58:22 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/19 18:55:45 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	*p;
-	size_t	idx;
+	t_list	*temp;
 
-	if (!s)
+	if (!lst)
 		return (NULL);
-	idx = 0;
-	if (start >= ft_strlen(s))
+	temp = lst;
+	while (temp->next)
 	{
-		p = malloc(1);
-		if (p == NULL)
-			return (NULL);
-		p[0] = '\0';
-		return (p);
+		temp = temp->next;
 	}
-	p = malloc(len + 1);
-	if (p == NULL)
-		return (NULL);
-	while (s[start + idx] != '\0' && idx < len)
-	{
-		p[idx] = s[start + idx];
-		idx++;
-	}
-	p[idx] = '\0';
-	return (p);
+	return (temp);
 }

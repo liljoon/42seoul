@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 18:49:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/13 11:17:43 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 21:37:45 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/21 14:25:28 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	len(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	cnt;
-
-	cnt = 0;
-	while (s[cnt] != '\0')
-		cnt++;
-	return (cnt);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		s1_len;
-	int		idx;
 	char	*p;
+	size_t	idx;
 
-	s1_len = len(s1);
-	p = malloc(s1_len + 1);
-	if (p == 0)
-		return (p);
+	if (!s)
+		return (NULL);
 	idx = 0;
-	while (s1[idx] != '\0')
+	if (start >= ft_strlen(s))
+		len = 0;
+	else if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	p = malloc(len + 1);
+	if (p == NULL)
+		return (NULL);
+	while (s[start + idx] != '\0' && idx < len)
 	{
-		p[idx] = s1[idx];
+		p[idx] = s[start + idx];
 		idx++;
 	}
 	p[idx] = '\0';

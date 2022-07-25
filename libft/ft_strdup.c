@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 17:41:50 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/13 14:01:41 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 18:49:14 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/21 14:42:38 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static int	len(const char *s)
 {
-	size_t				idx;
-	const unsigned char	*s1_u;
-	const unsigned char	*s2_u;
+	int	cnt;
 
-	s1_u = (const unsigned char *)s1;
-	s2_u = (const unsigned char *)s2;
+	cnt = 0;
+	while (s[cnt] != '\0')
+		cnt++;
+	return (cnt);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		s1_len;
+	int		idx;
+	char	*p;
+
+	s1_len = len(s1);
+	p = malloc(s1_len + 1);
+	if (p == 0)
+		return (p);
 	idx = 0;
-	while (idx < n)
+	while (s1[idx] != '\0')
 	{
-		if (s1_u[idx] != s2_u[idx])
-		{
-			return (s1_u[idx] - s2_u[idx]);
-		}
-		else if (s1_u[idx] == '\0' && s2_u[idx] == '\0')
-		{
-			return (0);
-		}
+		p[idx] = s1[idx];
 		idx++;
 	}
-	return (0);
+	p[idx] = '\0';
+	return (p);
 }
