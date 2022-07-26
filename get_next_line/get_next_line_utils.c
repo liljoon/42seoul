@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 15:32:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/25 21:24:37 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/26 19:43:49 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@ int	get_length(t_buffer *buff)
 	int	cnt;
 
 	cnt = 0;
-	while (buff->content[buff->pos + cnt] != '\n'
-		&& buff->pos + cnt < BUFFER_SIZE)
+	while (buff->pos + cnt < buff->read_len)
+	{
+		if (buff->content[buff->pos + cnt] == '\n')
+		{
+			cnt++;
+			break ;
+		}
 		cnt++;
+	}
 	return (cnt);
 }
 
@@ -46,4 +52,23 @@ size_t	ft_strlen(const char *s)
 	while (s[idx] != '\0')
 		idx++;
 	return (idx);
+}
+
+char	*str_push_back(char *origin, char *content, int length)
+{
+	char	*res;
+	int		origin_length;
+
+	if (origin == NULL)
+		origin_length = 0;
+	else
+		origin_length = ft_strlen(origin);
+	res = malloc(origin_length + length + 1);
+	if (!res)
+		return (NULL);
+	ft_memcpy(res, origin, origin_length);
+	ft_memcpy(res + origin_length, content, length);
+	res[origin_length + length] = '\0';
+	free(origin);
+	return (res);
 }

@@ -1,2 +1,5 @@
 .DS_Store
 *.out
+/test.c
+/test.txt
+.gitignore

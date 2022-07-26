@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 15:31:32 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/25 21:24:31 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/26 20:02:53 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,26 @@ char	*get_next_line(int fd)
 {
 	static t_buffer	buff;
 	char			*res;
-	int				length;
 
-	if (buff.pos == 0)
+	res = NULL;
+	while (1)
 	{
-		if (read(fd, buff.content, BUFFER_SIZE) == -1)
+		if (buff.pos >= buff.read_len)
+			buff.pos = 0;
+		if (buff.pos == 0)
+		{
+			buff.read_len = read(fd, buff.content, BUFFER_SIZE);
+			if (buff.read_len < 0)
+				return (NULL);
+			else if (buff.read_len == 0)
+				return (res);
+		}
+		res = str_push_back(res, buff.content + buff.pos, get_length(&buff));
+		if (!res)
 			return (NULL);
+		buff.pos += get_length(&buff);
+		if (buff.content[buff.pos - 1] == '\n' || buff.read_len < BUFFER_SIZE)
+			break ;
 	}
-	length = get_length(&buff);
-	res = malloc(sizeof(char) * (length + 1));
-	if (!res)
-		return (NULL);
-	ft_memcpy(res, buff.content + buff.pos, length);
-	buff.pos += length + 1;
-	if (buff.pos >= BUFFER_SIZE)
-		buff.pos = 0;
-	res[length] = '\n';
 	return (res);
 }
