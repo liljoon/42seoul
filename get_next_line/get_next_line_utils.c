@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 15:32:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/26 19:43:49 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/27 21:35:52 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	get_length(t_buffer *buff)
+int	get_length_to_copy(t_buffer *buff)
 {
 	int	cnt;
 
@@ -33,8 +33,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	idx;
 
-	if (!dst || !src)
-		return (NULL);
 	idx = 0;
 	while (idx < n)
 	{
@@ -65,7 +63,10 @@ char	*str_push_back(char *origin, char *content, int length)
 		origin_length = ft_strlen(origin);
 	res = malloc(origin_length + length + 1);
 	if (!res)
+	{
+		free(origin);
 		return (NULL);
+	}
 	ft_memcpy(res, origin, origin_length);
 	ft_memcpy(res + origin_length, content, length);
 	res[origin_length + length] = '\0';

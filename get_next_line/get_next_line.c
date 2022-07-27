@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 15:31:32 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/26 20:02:53 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/27 22:31:10 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,19 @@ char	*get_next_line(int fd)
 		{
 			buff.read_len = read(fd, buff.content, BUFFER_SIZE);
 			if (buff.read_len < 0)
+			{
+				free(res);
 				return (NULL);
+			}
 			else if (buff.read_len == 0)
 				return (res);
 		}
-		res = str_push_back(res, buff.content + buff.pos, get_length(&buff));
+		res = str_push_back(res, buff.content + buff.pos,
+				get_length_to_copy(&buff));
 		if (!res)
 			return (NULL);
-		buff.pos += get_length(&buff);
-		if (buff.content[buff.pos - 1] == '\n' || buff.read_len < BUFFER_SIZE)
+		buff.pos += get_length_to_copy(&buff);
+		if (buff.content[buff.pos - 1] == '\n')
 			break ;
 	}
 	return (res);
