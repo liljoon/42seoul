@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/11 16:33:39 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/07/12 16:07:20 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/08/05 17:58:26 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/08/05 18:06:11 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "ft_printf.h"
 
-static void	print_recursive(int n, int fd)
+int	print_char(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+static void	print_recursive(int n, int *cnt)
 {
 	char	print_char;
 
@@ -22,34 +28,37 @@ static void	print_recursive(int n, int fd)
 	}
 	else
 	{
-		print_recursive(n / 10, fd);
+		print_recursive(n / 10, cnt);
 		print_char = n % 10 + '0';
-		write(fd, &print_char, 1);
+		write(1, &print_char, 1);
+		(*cnt)++;
 	}
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_cnt(int n)
 {
-	int		dividend;
+	int	dividend;
+	int	cnt;
 
+	cnt = 0;
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}	
+		write(1, "-2147483648", 11);
+		return (11);
+	}
 	if (n < 0)
 	{
 		dividend = -1 * n;
-		write(fd, "-", 1);
+		write(1, "-", 1);
+		cnt++;
 	}
 	else if (n == 0)
 	{
-		write(fd, "0", 1);
-		return ;
+		write(1, "0", 1);
+		return (1);
 	}
 	else
-	{
 		dividend = n;
-	}
-	print_recursive(dividend, fd);
+	print_recursive(dividend, &cnt);
+	return (cnt);
 }
