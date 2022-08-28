@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:58:26 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/08/07 22:14:31 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/08/08 14:25:04 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,11 @@ static void	print_recursive(int n, int *cnt)
 {
 	char	c;
 
-	if (n <= 0)
-	{
-		return ;
-	}
-	else
-	{
+	if (n > 9)
 		print_recursive(n / 10, cnt);
-		c = n % 10 + '0';
-		write(1, &c, 1);
-		(*cnt)++;
-	}
+	c = n % 10 + '0';
+	write(1, &c, 1);
+	(*cnt)++;
 }
 
 int	ft_putnbr_cnt(int n)
@@ -50,11 +44,6 @@ int	ft_putnbr_cnt(int n)
 		dividend = -1 * n;
 		write(1, "-", 1);
 		cnt++;
-	}
-	else if (n == 0)
-	{
-		write(1, "0", 1);
-		return (1);
 	}
 	else
 		dividend = n;

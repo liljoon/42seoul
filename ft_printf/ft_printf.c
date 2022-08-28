@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 18:48:41 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/08/07 22:06:31 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/08/08 14:27:59 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_control(char command, va_list *vl, int *cnt)
+static void	print_control(char command, va_list *vl, int *cnt)
 {
 	if (command == 'c')
 		(*cnt) += print_char((char)va_arg(*vl, int));
