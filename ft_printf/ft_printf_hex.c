@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 19:30:36 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/08/05 18:14:28 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/08/08 14:28:27 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_hex(int n, int upper, int *cnt)
+static void	print_hex(int n, int upper, int *cnt)
 {
 	char	c;
 
@@ -43,7 +43,7 @@ void	convert_dec_to_hex(unsigned int num, int upper, int *cnt)
 	}
 }
 
-void	convert_pointer_to_hex_recur(unsigned long num, int *cnt)
+static void	convert_pointer_to_hex_recur(unsigned long num, int *cnt)
 {
 	if (num <= 15)
 		print_hex(num, 0, cnt);
