@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/09/24 18:52:06 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/09/25 11:30:36 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,15 @@
 
 int	key_hook(int keycode, t_so_long *app)
 {
-	int	temp_x = app->player.x;
-	int	temp_y = app->player.y;
-
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 0)
-		app->player.x -= 128;
-	else if (keycode == 1)
-		app->player.y += 128;
-	else if (keycode == 2)
-		app->player.x += 128;
-	else if (keycode == 13)
-		app->player.y -= 128;
-	draw_grass(temp_x, temp_y, app);
-	draw_player(app);
+	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+		player_move(keycode, app);
 	return 0;
 }
 
 int mouse_hook(int button, int x,int y, void *param)
 {
-	printf("%d %d\n",x,y);
-
 	return 0;
 }
 

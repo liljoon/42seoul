@@ -6,7 +6,7 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 14:26:17 by isunwoo           #+#    #+#              #
-#    Updated: 2022/09/24 14:33:47 by isunwoo          ###   ########.fr        #
+#    Updated: 2022/09/25 12:49:31 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC		= 	cc
 CFLAGS	=	-Wall -Wextra -Werror
 NAME	=	so_long
 
-SRCS	=	main.c	so_long.c
+SRCS	=	main.c	so_long.c	so_long_draw.c	so_long_move.c
 
 OBJS	=	$(SRCS:.c=.o)
 
