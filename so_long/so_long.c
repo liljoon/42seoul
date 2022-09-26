@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 14:08:41 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/09/25 12:05:38 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/09/26 14:29:03 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,18 @@ void	init_player(t_so_long *app)
 	draw_player(app);
 }
 
-void map_read(t_so_long *app)
+void	map_read(t_so_long *app)
 {
-	int fd;
+	int	fd;
 
 	fd = open("./map.ber", O_RDONLY); // argv로 변경 필요
-	for(int i=0;i<5;i++)
+	for(int i=0; i<5; i++)
 	{
-		for(int j=0;j<14;j++)
+		for(int j = 0;j < 14;j++)
 		{
-
 			char c;
 			read(fd, &c, 1);
-			if(j==13)
+			if(j == 13)
 				continue;
 			app->map.map_data[i][j] = c;
 		}
@@ -60,7 +59,7 @@ void map_init(t_so_long *app)
 
 
 
-void init_file_image_ptr(t_so_long *app)
+void	init_file_image_ptr(t_so_long *app)
 {
 	app->map.grass_ptr = mlx_xpm_file_to_image(\
 		app->mlx_ptr,"./Grass.xpm", &(app->map.size), &(app->map.size));
