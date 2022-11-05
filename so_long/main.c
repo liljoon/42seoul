@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/09/26 14:25:28 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/04 17:13:00 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ int	exit_func(void)
 	exit(0);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_so_long	app;
-	//임시 크기 지정
-	app.width = 13 * 128;
-	app.height = 5 * 128;
-	init_so_long(&app);
+	init_so_long(&app, argv[1]);
 	mlx_key_hook(app.win_ptr, key_hook, &app);
 	mlx_mouse_hook(app.win_ptr, mouse_hook, (void *)0);
 	mlx_hook(app.win_ptr, 17, 0, exit_func, (void *)0);

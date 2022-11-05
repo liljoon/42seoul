@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 14:08:41 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/09/26 14:29:03 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/04 21:13:54 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,23 @@ void	init_player(t_so_long *app)
 	draw_player(app);
 }
 
-void	map_read(t_so_long *app)
+void	map_init(t_so_long *app, char *map_path)
 {
-	int	fd;
-
-	fd = open("./map.ber", O_RDONLY); // argv로 변경 필요
-	for(int i=0; i<5; i++)
-	{
-		for(int j = 0;j < 14;j++)
-		{
-			char c;
-			read(fd, &c, 1);
-			if(j == 13)
-				continue;
-			app->map.map_data[i][j] = c;
-		}
-	}
+	app->map.map_path = map_path;
+	map_read(app);
+	map_check(app);
+	app->map.size = 128;
 }
 
-void map_init(t_so_long *app)
+void map_draw_init(t_so_long *app)
 {
-	map_read(app);
-	app->map.size = 128;
-	for(int i=0;i<13;i++)
+	int	i;
+	int	j;
+	i = 0;
+	while (i < app->width)
 	{
-		for(int j=0;j<5;j++)
+		j = 0;
+		while (j < app->height)
 		{
 			draw_grass(i * 128, j * 128, app);
 			if(app->map.map_data[j][i] == '1')
@@ -52,30 +44,37 @@ void map_init(t_so_long *app)
 				app->player.x = i * 128;
 				app->player.y = j * 128;
 			}
-
+			else if (app->map.map_data[j][i] == 'C')
+				draw_collectible(i * 128, j * 128, app);
+			else if (app->map.map_data[j][i] == 'E')
+				draw_exit(i * 128, j * 128, app);
+			j++;
 		}
+		i++;
 	}
 }
-
-
 
 void	init_file_image_ptr(t_so_long *app)
 {
 	app->map.grass_ptr = mlx_xpm_file_to_image(\
-		app->mlx_ptr,"./Grass.xpm", &(app->map.size), &(app->map.size));
+		app->mlx_ptr,"./img/Grass.xpm", &(app->map.size), &(app->map.size));
 	app->player.image_ptr = mlx_xpm_file_to_image(\
-		app->mlx_ptr, "./player.xpm", &(app->player.size), &(app->player.size));
+		app->mlx_ptr, "./img/player.xpm", &(app->player.size), &(app->player.size));
 	app->map.wall_ptr = mlx_xpm_file_to_image(\
-		app->mlx_ptr,"./wall.xpm", &(app->map.size), &(app->map.size));
+		app->mlx_ptr,"./img/wall.xpm", &(app->map.size), &(app->map.size));
+	app->map.coll_ptr = mlx_xpm_file_to_image(\
+		app->mlx_ptr,"./img/ChickenLeg.xpm", &(app->map.size), &(app->map.size));
+	app->map.exit_ptr = mlx_xpm_file_to_image(\
+		app->mlx_ptr,"./img/exit.xpm", &(app->map.size), &(app->map.size));
 }
 
-void	init_so_long(t_so_long *app)
+void	init_so_long(t_so_long *app, char *map_path)
 {
 	app->mlx_ptr = mlx_init();
+	map_init(app, map_path);
 	app->win_ptr = mlx_new_window(\
-		app->mlx_ptr, app->width, app->height, "so_long");
+		app->mlx_ptr, app->width * app->map.size, app->height * app->map.size, "so_long");
 	init_file_image_ptr(app);
-	map_init(app);
+	map_draw_init(app);
 	init_player(app);
-
 }

@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 10:35:39 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/09/26 14:26:54 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/04 21:09:20 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,16 @@ void	draw_wall(int x, int y, t_so_long *app)
 {
 	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, \
 		app->map.wall_ptr, x, y);
+}
+
+void draw_collectible(int x, int y, t_so_long *app)
+{
+	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, \
+		app->map.coll_ptr, x, y);
+}
+
+void draw_exit(int x, int y, t_so_long *app)
+{
+	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, \
+		app->map.exit_ptr, x, y);
 }
