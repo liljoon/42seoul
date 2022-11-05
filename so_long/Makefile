@@ -22,6 +22,8 @@ OBJS	=	$(SRCS:.c=.o)
 $(NAME) : $(SRCS)
 	$(CC) $(SRCS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
+a.out : $(SRCS)
+	cc get_next_line/*.c *.c -lmlx -framework OpenGL -framework AppKit -L./minilibx_opengl_20191021/ -I./minilibx_opengl_20191021
 #$(OBJS) : $(SRCS)
 #	$(CC) $(CFLAGS) -c $(SRCS)
 
