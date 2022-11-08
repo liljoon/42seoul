@@ -6,7 +6,7 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 14:26:17 by isunwoo           #+#    #+#              #
-#    Updated: 2022/11/04 16:26:06 by isunwoo          ###   ########.fr        #
+#    Updated: 2022/11/08 21:29:26 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS	=	-Wall -Wextra -Werror
 NAME	=	so_long
 
 SRCS	=	main.c	so_long.c	so_long_draw.c	so_long_move.c \
-			./get_next_line/get_next_line.c		./get_next_line/get_next_line_utils.c	so_long_map.c
+			./get_next_line/get_next_line.c		./get_next_line/get_next_line_utils.c	so_long_map.c \
+			so_long_map_count.c	so_long_map_check.c	so_long_map_dfs.c
 
 OBJS	=	$(SRCS:.c=.o)
 

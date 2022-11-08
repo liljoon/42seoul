@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/07 14:47:24 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/08 21:09:20 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,34 @@ int	key_hook(int keycode, t_so_long *app)
 	return (0);
 }
 
-int	mouse_hook(int button, int x,int y, void *param)
-{
-	return (0);
-}
-
 int	exit_func(void)
 {
 	exit(0);
+}
+
+void	check_extension(char *path)
+{
+	int	i;
+
+	if (!path)
+		exit(1);
+	i = 0;
+	while (path[i] != '\0')
+		i++;
+	if (i < 4)
+		exit(1);
+	if (path[i - 4] != '.' || path[i - 3] != 'b' \
+		|| path[i - 2] != 'e' || path[i - 1] != 'r')
+		exit(1);
 }
 
 int	main(int argc, char *argv[])
 {
 	t_so_long	app;
 
+	check_extension(argv[1]);
 	init_so_long(&app, argv[1]);
 	mlx_key_hook(app.win_ptr, key_hook, &app);
-	mlx_mouse_hook(app.win_ptr, mouse_hook, (void *)0);
 	mlx_hook(app.win_ptr, 17, 0, exit_func, (void *)0);
 	mlx_loop(app.mlx_ptr);
 }

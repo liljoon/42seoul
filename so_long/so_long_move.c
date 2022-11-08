@@ -6,11 +6,58 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:19:58 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/07 14:55:37 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/08 21:27:33 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	print_recursive(int n, int fd)
+{
+	char	print_char;
+
+	if (n <= 0)
+		return ;
+	else
+	{
+		print_recursive(n / 10, fd);
+		print_char = n % 10 + '0';
+		write(fd, &print_char, 1);
+	}
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	int		dividend;
+
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		dividend = -1 * n;
+		write(fd, "-", 1);
+	}
+	else if (n == 0)
+	{
+		write(fd, "0", 1);
+		return ;
+	}
+	else
+		dividend = n;
+	print_recursive(dividend, fd);
+}
+
+void	print_move_add_cnt(t_so_long *app)
+{
+	app->player.move_cnt++;
+	write(1, "number of movements : ", 22);
+	ft_putnbr_fd(app->player.move_cnt, 1);
+	write(1, "\n", 1);
+	return ;
+}
 
 void	move(t_so_long *app, int dy, int dx)
 {
@@ -30,7 +77,7 @@ void	move(t_so_long *app, int dy, int dx)
 	{
 		if (app->map.col_cnt == 0)
 		{
-			printf("WIN!!\n");
+			print_move_add_cnt(app);
 			exit(0);
 		}
 	}
@@ -57,4 +104,6 @@ void	player_move(int keycode, t_so_long *app)
 	if (app->map.map_data[temp_y / 128][temp_x / 128] == 'E')
 		draw_exit(temp_x, temp_y, app);
 	draw_player(app);
+	if (temp_x != app->player.x || temp_y != app->player.y)
+		print_move_add_cnt(app);
 }

@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_map.c                                      :+:      :+:    :+:   */
+/*   so_long_map_check_dfs.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 16:25:16 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/08 20:52:00 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/11/08 21:28:58 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/11/08 21:51:51 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_read(t_so_long *app)
+void	dfs(int y, int x, t_so_long *app, t_cnt_map *cnt)
 {
-	int	fd;
-	int	i;
 
+}
+
+void	check_map_valid(t_so_long *app)
+{
+	char	**map;
+	char	**visited;
+	int		i;
+	int		j;
+
+	visited = malloc(sizeof(char *) * app->height);
 	i = 0;
-	map_check_height(app);
-	fd = open(app->map.map_path, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("open");
-		exit(1);
-	}
 	while (i < app->height)
 	{
-		app->map.map_data[i] = get_next_line(fd);
-		if (app->map.map_data[i] == NULL)
+		visited[i] = malloc(sizeof(char) * app->width);
+		j = 0;
+		while (j < app->width)
 		{
-			perror("get_next_line");
-			exit(1);
+			visited[i][j] = 0;
+			j++;
 		}
 		i++;
 	}
-	close(fd);
+	map = app->map.map_data;
+
+
 }

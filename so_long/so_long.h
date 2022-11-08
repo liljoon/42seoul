@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 14:03:06 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/04 21:10:41 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/08 21:30:38 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,20 @@
 # include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
 
+typedef struct s_cnt_map
+{
+	int	p;
+	int	c;
+	int	e;
+}	t_cnt_map;
+
 typedef struct s_player
 {
 	void	*image_ptr;
 	int		x;
 	int		y;
 	int		size;
+	int		move_cnt;
 }	t_player;
 
 typedef struct s_map
@@ -57,6 +65,9 @@ void	draw_wall(int x, int y, t_so_long *app);
 void	draw_exit(int x, int y, t_so_long *app);
 void	draw_collectible(int x, int y, t_so_long *app);
 void	player_move(int keycode, t_so_long *app);
+void	check_map_valid(t_so_long *app);
+void	map_check_height(t_so_long *app);
+void	check_count(t_so_long *app);
 
 void	map_read(t_so_long *app);
 void	map_check(t_so_long *app);

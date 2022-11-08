@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 14:08:41 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/07 15:03:53 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/08 21:16:28 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_player(t_so_long *app)
 {
+	app->player.move_cnt = 0;
 	app->player.size = 128;
 	draw_player(app);
 }
