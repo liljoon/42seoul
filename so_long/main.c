@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/04 17:13:00 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/07 14:47:24 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	exit_func(void)
 int	main(int argc, char *argv[])
 {
 	t_so_long	app;
+
 	init_so_long(&app, argv[1]);
 	mlx_key_hook(app.win_ptr, key_hook, &app);
 	mlx_mouse_hook(app.win_ptr, mouse_hook, (void *)0);

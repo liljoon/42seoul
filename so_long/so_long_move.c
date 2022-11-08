@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 11:19:58 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/04 21:19:24 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/07 14:55:37 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	move(t_so_long *app, int dy, int dx)
 {
-	if (app->map.map_data[app->player.y / 128 + dy][app->player.x / 128 + dx] == '1')
+	if (app->map.map_data \
+	[app->player.y / 128 + dy][app->player.x / 128 + dx] == '1')
 		return ;
-	if (app->map.map_data[app->player.y / 128 + dy][app->player.x / 128 + dx] == 'C')
+	if (app->map.map_data
+		[app->player.y / 128 + dy][app->player.x / 128 + dx] == 'C')
 	{
 		draw_grass(app->player.x + 128 * dx, app->player.y + 128 * dy, app);
 		app->map.col_cnt--;
-		app->map.map_data[app->player.y / 128 + dy][app->player.x / 128 + dx] = 0;
+		app->map.map_data \
+			[app->player.y / 128 + dy][app->player.x / 128 + dx] = 0;
 	}
-	else if (app->map.map_data[app->player.y / 128 + dy][app->player.x / 128 + dx] == 'E')
+	else if (app->map.map_data \
+		[app->player.y / 128 + dy][app->player.x / 128 + dx] == 'E')
 	{
 		if (app->map.col_cnt == 0)
 		{
 			printf("WIN!!\n");
 			exit(0);
-		}
-		else
-		{
-
 		}
 	}
 	app->player.x += 128 * dx;

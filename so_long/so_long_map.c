@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 16:25:16 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/04 20:41:12 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/07 14:53:26 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ void	map_check_height(t_so_long *app)
 	int		count;
 
 	count = 0;
-	if ((fd = open(app->map.map_path, O_RDONLY)) == -1)
+	fd = open(app->map.map_path, O_RDONLY);
+	if (fd == -1)
 	{
 		perror("open");
 		exit(1);
 	}
 	while (read(fd, &ch, 1))
 	{
-		if(ch == '\n')
+		if (ch == '\n')
 			count++;
 	}
 	app->height = count;
@@ -42,8 +43,9 @@ int	line_check(char *line)
 	while (line)
 	{
 		if (*line == '\n')
-			break;
-		else if (*line != '1' && *line != '0' && *line != 'P' && *line != 'E' && *line != 'C')
+			break ;
+		else if (*line != '1' && *line != '0' && \
+			*line != 'P' && *line != 'E' && *line != 'C')
 		{
 			perror("map error");
 			exit(1);
@@ -54,15 +56,15 @@ int	line_check(char *line)
 	return (cnt);
 }
 
-void check_edge(t_so_long *app)
+void	check_edge(t_so_long *app)
 {
 	int	i;
 
 	i = 0;
-
 	while (i < app->width)
 	{
-		if (app->map.map_data[0][i] != '1' || app->map.map_data[app->height - 1][i] != '1')
+		if (app->map.map_data[0][i] != '1' || \
+			app->map.map_data[app->height - 1][i] != '1')
 		{
 			perror("map error3");
 			exit(1);
@@ -72,7 +74,8 @@ void check_edge(t_so_long *app)
 	i = 0;
 	while (i < app->height)
 	{
-		if (app->map.map_data[i][0] != '1' || app->map.map_data[i][app->width - 1] != '1')
+		if (app->map.map_data[i][0] != '1' || \
+			app->map.map_data[i][app->width - 1] != '1')
 		{
 			perror("map error3");
 			exit(1);
@@ -81,39 +84,39 @@ void check_edge(t_so_long *app)
 	}
 }
 
-void check_count(t_so_long *app)
+void	check_count(t_so_long *app)
 {
 	int	i;
 	int	j;
-	int	E_cnt;
-	int	C_cnt;
-	int	P_cnt;
+	int	e_cnt;
+	int	c_cnt;
+	int	p_cnt;
 
 	i = 0;
-	E_cnt = 0;
-	C_cnt = 0;
-	P_cnt = 0;
+	e_cnt = 0;
+	c_cnt = 0;
+	p_cnt = 0;
 	while (i < app->height)
 	{
 		j = 0;
 		while (j < app->width)
 		{
 			if (app->map.map_data[i][j] == 'P')
-				P_cnt++;
+				p_cnt++;
 			else if (app->map.map_data[i][j] == 'E')
-				E_cnt++;
+				e_cnt++;
 			else if (app->map.map_data[i][j] == 'C')
-				C_cnt++;
+				c_cnt++;
 			j++;
 		}
 		i++;
 	}
-	if (P_cnt != 1 || E_cnt != 1)
+	if (p_cnt != 1 || e_cnt != 1)
 	{
 		perror("P,C map error");
 		exit(1);
 	}
-	app->map.col_cnt = C_cnt;
+	app->map.col_cnt = c_cnt;
 }
 
 void	map_check(t_so_long *app)
@@ -147,14 +150,16 @@ void	map_read(t_so_long *app)
 
 	i = 0;
 	map_check_height(app);
-	if ((fd = open(app->map.map_path, O_RDONLY)) == -1)// argv로 변경 필요
+	fd = open(app->map.map_path, O_RDONLY);
+	if (fd == -1)
 	{
 		perror("open");
 		exit(1);
 	}
 	while (i < app->height)
 	{
-		if ((app->map.map_data[i] = get_next_line(fd)) == NULL)
+		app->map.map_data[i] = get_next_line(fd);
+		if (app->map.map_data[i] == NULL)
 		{
 			perror("get_next_line");
 			exit(1);
