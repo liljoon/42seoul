@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:51:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/08 20:51:55 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/11 20:23:22 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ void	map_check_height(t_so_long *app)
 	count = 0;
 	fd = open(app->map.map_path, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("open");
-		exit(1);
-	}
+		exit_with_error("open");
 	while (read(fd, &ch, 1))
 	{
 		if (ch == '\n')
@@ -46,10 +43,7 @@ int	line_check(char *line)
 			break ;
 		else if (*line != '1' && *line != '0' && \
 			*line != 'P' && *line != 'E' && *line != 'C')
-		{
-			perror("map error");
-			exit(1);
-		}
+			exit_with_error("map error : undefined character");
 		cnt++;
 		line++;
 	}
@@ -65,10 +59,7 @@ void	check_edge(t_so_long *app)
 	{
 		if (app->map.map_data[0][i] != '1' || \
 			app->map.map_data[app->height - 1][i] != '1')
-		{
-			perror("map error3");
-			exit(1);
-		}
+			exit_with_error("map error : no wall at edge");
 		i++;
 	}
 	i = 0;
@@ -76,10 +67,7 @@ void	check_edge(t_so_long *app)
 	{
 		if (app->map.map_data[i][0] != '1' || \
 			app->map.map_data[i][app->width - 1] != '1')
-		{
-			perror("map error3");
-			exit(1);
-		}
+			exit_with_error("map error : no wall at edge");
 		i++;
 	}
 }
@@ -96,14 +84,12 @@ void	map_check(t_so_long *app)
 	{
 		temp_width = line_check(app->map.map_data[i]);
 		if (width != -1 && width != temp_width)
-		{
-			perror("map error2");
-			exit(1);
-		}
+			exit_with_error("map error : map is not retangular");
 		width = temp_width;
 		i++;
 	}
 	app->width = width;
 	check_edge(app);
 	check_count(app);
+	check_map_valid(app);
 }

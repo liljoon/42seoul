@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:35:41 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/08 20:36:20 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:08:33 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ void	check_count(t_so_long *app)
 		}
 		i++;
 	}
-	if (cnt.p != 1 || cnt.e != 1)
-	{
-		perror("P,C map error");
-		exit(1);
-	}
+	if (cnt.p != 1 || cnt.e != 1 || cnt.c < 1)
+		exit_with_error("map error : wrong numbers of P or E or C");
 	app->map.col_cnt = cnt.c;
 }

@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/08 21:09:20 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/11 21:01:49 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int	key_hook(int keycode, t_so_long *app)
 int	exit_func(void)
 {
 	exit(0);
+}
+
+void	check_argc(int argc)
+{
+	if (argc != 2)
+		exit_with_error("wrong number of arguments");
 }
 
 void	check_extension(char *path)
@@ -46,6 +52,7 @@ int	main(int argc, char *argv[])
 {
 	t_so_long	app;
 
+	check_argc(argc);
 	check_extension(argv[1]);
 	init_so_long(&app, argv[1]);
 	mlx_key_hook(app.win_ptr, key_hook, &app);
