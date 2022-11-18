@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:08:13 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/11 21:01:49 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/13 16:58:09 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	check_extension(char *path)
 	int	i;
 
 	if (!path)
-		exit(1);
+		exit_with_error("file name");
 	i = 0;
 	while (path[i] != '\0')
 		i++;
 	if (i < 4)
-		exit(1);
+		exit_with_error("file name");
 	if (path[i - 4] != '.' || path[i - 3] != 'b' \
 		|| path[i - 2] != 'e' || path[i - 1] != 'r')
-		exit(1);
+		exit_with_error("file name");
 }
 
 int	main(int argc, char *argv[])

@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:51:46 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/11 20:23:22 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/13 16:46:50 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	map_check_height(t_so_long *app)
 	}
 	app->height = count;
 	app->map.map_data = malloc(sizeof(*(app->map.map_data)) * count);
+	if (app->map.map_data == NULL)
+		exit_with_error("malloc");
 	close(fd);
 }
 

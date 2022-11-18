@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 21:28:58 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/11 20:26:05 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/11/13 16:46:53 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,14 @@ void	check_map_valid(t_so_long *app)
 	int			j;
 
 	app->visited = malloc(sizeof(char *) * app->height);
+	if (app->visited == NULL)
+		exit_with_error("malloc");
 	i = 0;
 	while (i < app->height)
 	{
 		app->visited[i] = malloc(sizeof(char) * app->width);
+		if (app->visited[i] == NULL)
+			exit_with_error("malloc");
 		j = 0;
 		while (j < app->width)
 		{
