@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk_utils_bonus.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 20:39:28 by isunwoo           #+#    #+#             */
-/*   Updated: 2022/11/18 14:08:20 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/11/18 13:59:55 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/11/18 14:44:18 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_utils.h"
+#ifndef MINITALK_UTILS_BONUS_H
+# define MINITALK_UTILS_BONUS_H
+# include <unistd.h>
+# include <signal.h>
+# include <stdlib.h>
 
-void	send_char(int pid, char c)
+typedef struct s_char_data
 {
-	int	i;
+	int		idx;
+	char	c;
+}	t_char_data;
 
-	i = 7;
-	while (i >= 0)
-	{
-		if (c & (1 << i))
-			kill(pid, SIGUSR2);
-		else
-			kill(pid, SIGUSR1);
-		i--;
-		usleep(100);
-	}
-	return ;
-}
+int		ft_atoi(const char *str);
+void	ft_putnbr_fd(int n, int fd);
 
-int	main(int argc, char *argv[])
-{
-	char	*s;
-
-	if (argc != 3)
-		exit(1);
-	s = argv[2];
-	while (*s != '\0')
-	{
-		send_char(ft_atoi(argv[1]), *s);
-		s++;
-	}
-	send_char(ft_atoi(argv[1]), 0);
-	return (0);
-}
+#endif
