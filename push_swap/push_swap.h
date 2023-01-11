@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/02 19:51:28 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:52:34 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,26 @@ typedef struct s_stack{
 }	t_stack;
 
 void	init_stack(t_stack *st, int size);
-void	swap(t_stack *st);
-void	toss(t_stack *st1, t_stack *st2);
-void	rotate(t_stack *st);
-void	reverse_rotate(t_stack *st);
+int		pop_back(t_stack *st);
+int		pop_front(t_stack *st);
+void	push_back(t_stack *st, int num);
+void	push_front(t_stack *st, int num);
 int		ft_atoi(const char *str);
-int		next_idx(t_stack *st, int idx);
-int		before_idx(t_stack *st, int idx);
+int	before_idx(t_stack *st, int idx);
+
+void	sa(t_stack *a, t_stack *b);
+void	sb(t_stack *a, t_stack *b);
+void	ss(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+void	ra(t_stack *a, t_stack *b);
+void	rb(t_stack *a, t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+void	rra(t_stack *a, t_stack *b);
+void	rrb(t_stack *a, t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
+
+
+
 
 #endif

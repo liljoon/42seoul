@@ -6,7 +6,7 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 19:04:32 by isunwoo           #+#    #+#              #
-#    Updated: 2023/01/02 19:52:14 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/01/09 21:58:53 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ NAME	=	push_swap
 
 .SUFFIXES : .c .o
 .c.o :
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -g -c $(CFLAGS) $< -o $@
 
 $(NAME)	:	$(OBJS)
-	gcc $(OBJS) -o $@
+	gcc -g $(OBJS) -o $@
 
 all	: $(NAME)
 
