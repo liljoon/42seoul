@@ -6,13 +6,37 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:30 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/19 16:24:11 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int compare(const void *a , const void *b)
+{
+     if( *(int*)a > *(int*)b )
+        return 1;
+    else if( *(int*)a < *(int*)b )
+        return -1;
+    else
+        return 0;
+}
+
+int mid(t_stack *st, int n)
+{
+	int *arr;
+	int temp = st->top;
+	arr = malloc(n * 4);
+	for(int i=0;i<n;i++)
+	{
+		arr[i] = st->data[temp];
+		temp = before_idx(st, temp);
+	}
+	qsort(arr, n, 4, compare);
+	return (arr[n/2]);
+}
 
 void info(t_stack *st)
 {
@@ -37,60 +61,86 @@ void info(t_stack *st)
 
 }
 
-int compare(const void *a , const void *b)
-{
-     if( *(int*)a > *(int*)b )
-        return 1;
-    else if( *(int*)a < *(int*)b )
-        return -1;
-    else
-        return 0;
-}
+void	B_to_A(t_stack *a, t_stack *b, int n);
 
-void division(t_stack *st, int n, int* divs)
+void	A_to_B(t_stack *a, t_stack *b, int n)
 {
-	int *arr;
-	int temp = st->top;
-	arr = malloc(n * 4);
+	int pivot;
+	int count = 0;
+	if(n <= 0)
+		return;
+	if (n == 1)
+	{
+		ra(a ,b);
+		return ;
+	}
+	if (n == 2)
+	{
+		if (a->data[a->top] > a->data[before_idx(a, a->top)])
+			sa(a, b);
+		ra(a, b);
+		ra(a, b);
+		return ;
+	}
+	pivot = mid(a, n);
 	for(int i=0;i<n;i++)
 	{
-		arr[i] = st->data[temp];
-		temp = before_idx(st, temp);
-	}
-	qsort(arr, n, 4, compare);
-	divs[0] = arr[n/3];
-	divs[1] = arr[2 * n / 3];
-	free(arr);
-}
-
-void partitioning(t_stack *a, t_stack *b)
-{
-	int divs[2];
-	int	i;
-
-	division(a, a->len, divs);
-	i = 0;
-	while (i < a->total_size)
-	{
-		if (a->data[a->top] < divs[0])
+		if(a->data[a->top] < pivot)
 		{
 			pb(a, b);
-			rb(a, b);
-		}
-		else if(a->data[a->top] > divs[1])
-		{
-			ra(a, b);
 		}
 		else
 		{
-			pb(a, b);
+			ra(a, b);
+			count++;
 		}
-		i++;
 	}
-	while (a->len)
+	for(int i=0;i<count;i++)
 	{
-		pb(a, b);
+		if(count == a->len)
+			break;
+		rra(a, b);
 	}
+
+	B_to_A(a, b, n - count);
+	A_to_B(a, b, count);
+
+}
+
+void	B_to_A(t_stack *a, t_stack *b, int n)
+{
+	int pivot;
+	int count = 0;
+
+	if (n <= 0)
+		return;
+	if (n == 1)
+	{
+		pa(a, b);
+		ra(a, b);
+		return ;
+	}
+	pivot = mid(b, n);
+
+	for(int i=0;i<n;i++)
+	{
+		if(b->data[b->top] >= pivot)
+		{
+			pa(a, b);
+		}
+		else
+		{
+			rb(a, b);
+			count++;
+		}
+	}
+	for(int i= 0;i < count; i++)
+	{
+		//rrb(a, b);
+	}
+
+	B_to_A(a, b, count);
+	A_to_B(a, b, n - count);
 }
 
 int	main(int argc, char *argv[])
@@ -107,7 +157,8 @@ int	main(int argc, char *argv[])
 		push_front(&a, ft_atoi(argv[idx]));
 		idx++;
 	}
-	partitioning(&a, &b);
+	A_to_B(&a, &b, a.total_size);
 	info(&a);
 	//info(&b);
+
 }
