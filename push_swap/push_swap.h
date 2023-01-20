@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/10 19:52:34 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/20 15:46:20 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	push_back(t_stack *st, int num);
 void	push_front(t_stack *st, int num);
 int		ft_atoi(const char *str);
 int	before_idx(t_stack *st, int idx);
+int	next_idx(t_stack *st, int idx);
 
 void	sa(t_stack *a, t_stack *b);
 void	sb(t_stack *a, t_stack *b);
