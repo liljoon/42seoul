@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:30 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/19 19:15:41 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,9 @@ void partitioning(t_stack *a, t_stack *b)
 			rb(a, b);
 		}
 		else if(a->data[a->top] > divs[1])
-		{
 			ra(a, b);
-		}
 		else
-		{
 			pb(a, b);
-		}
 		i++;
 	}
 	while (a->len)
