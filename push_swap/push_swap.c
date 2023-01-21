@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/21 23:38:44 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/22 01:12:53 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,13 @@ int	main(int argc, char *argv[])
 		push_front(&a, ft_atoi(argv[idx]));
 		idx++;
 	}
+
+	if(a.len <= 5)
+	{
+		sort_below_5(&a, &b);
+		return 0;
+	}
+
 	partitioning(&a, &b);
 
 	for(int i=0;i<b.total_size;i++)

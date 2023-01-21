@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/20 15:46:20 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/22 01:12:25 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	push_front(t_stack *st, int num);
 int		ft_atoi(const char *str);
 int	before_idx(t_stack *st, int idx);
 int	next_idx(t_stack *st, int idx);
+
+int find_biggest(t_stack *a);
+void sort_below_5(t_stack *a, t_stack *b);
 
 void	sa(t_stack *a, t_stack *b);
 void	sb(t_stack *a, t_stack *b);

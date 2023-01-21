@@ -6,14 +6,14 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 19:04:32 by isunwoo           #+#    #+#              #
-#    Updated: 2023/01/09 21:58:53 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/01/22 01:13:13 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	cc
 #CFLAGS	=	-Wall -Wextra -Werror
 
-SRCS	=	push_swap.c	stack_func.c	stack_utils.c	ft_atoi.c
+SRCS	=	push_swap.c	stack_func.c	stack_utils.c	ft_atoi.c	sort_below_5.c
 
 INCS	=	push_swap.h
 
