@@ -6,15 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/20 15:43:50 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/21 23:38:44 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-int a_start, a_end;
 
 void info(t_stack *st)
 {
@@ -91,40 +89,47 @@ void partitioning(t_stack *a, t_stack *b)
 	}
 }
 
-int	count_operation(t_stack *a, t_stack *b, int b_idx)
+int a_biggest_idx;
+int find_biggest(t_stack *a);
+void	count_operation(t_stack *a, t_stack *b, int b_idx, int *oper_count)
 {
-	int	cnt;
-	int rb;
-	int rrb;
-	int	ra;
-	int	rra;
-	int a_idx;
-	cnt = 0;
-	rb = (b->top + b->total_size - b_idx) % b->total_size;
-	rrb = (b_idx + b->total_size  - b->bottom) % b->total_size + 1;
-	if (rb > rrb)
-		cnt+= rrb;
-	else
-		cnt+= rb;
-	a_idx = a_start;
-	for(int i=0;i<a->len;i++)
-	{
-		int before = a_idx;
-		if (a_idx == a->top)
-			a_idx = a->bottom;
-		else
-			a_idx = next_idx(a, a_idx);
-		if (a->data[a_idx] < b->data[b_idx])
-			break;
-	}
-	ra = (a->top + a->total_size - a_idx) % a->total_size;
-	rra = (a_idx + a->total_size  - a->bottom + 1) % a->total_size;
-	if (ra > rra)
-		cnt+= rra;
-	else
-		cnt+= ra;
+	int put_idx;
+	int	data;
 
-	return cnt;
+	oper_count[0] = (b->top + b->total_size - b_idx) % b->total_size;
+	oper_count[1] = (b_idx + b->total_size  - b->bottom + 1) % b->total_size ;
+	if (oper_count[0] > oper_count[1])
+		oper_count[0] = 0;
+	else
+		oper_count[1] = 0;
+
+	if (a->len == 0)
+	{
+		oper_count[2] = 0;
+		oper_count[3] = 0;
+		return ;
+	}
+	data = b->data[b_idx];
+	put_idx = a_biggest_idx;
+	while (1)
+	{
+		if (a->data[put_idx] < data)
+			break;
+		if(put_idx == a->top)
+			put_idx = a->bottom;
+		else
+			put_idx = next_idx(a, put_idx);
+
+		if(put_idx == a_biggest_idx)
+			break ;
+	}
+	oper_count[2] = (a->top + a->total_size - put_idx + 1) % a->total_size;
+	oper_count[3] = (put_idx + a->total_size - a->bottom) % a->total_size;
+
+	if (oper_count[2] > oper_count[3])
+		oper_count[2] = 0;
+	else
+		oper_count[3] = 0;
 }
 
 int	select_one(t_stack *a, t_stack *b)
@@ -133,12 +138,16 @@ int	select_one(t_stack *a, t_stack *b)
 	int	b_idx;
 	int	smallest;
 	int	temp;
+	int oper_count[4]; // rb, rrb, ra, rra
 
 	b_idx = b->top;
 	smallest = 2147483647;
 	while (1)
 	{
-		temp = count_operation(a, b, b_idx);
+		temp = 0;
+		count_operation(a, b, b_idx, oper_count);
+		for(int i=0;i<4;i++)
+			temp += oper_count[i];
 		if (temp < smallest)
 		{
 			smallest = temp;
@@ -151,67 +160,44 @@ int	select_one(t_stack *a, t_stack *b)
 	return (ret);
 }
 
+int find_biggest(t_stack *a)
+{
+	int	idx;
+	int	ret;
+
+	ret = a->top;
+	idx = a->top;
+	while (1)
+	{
+		if (a->data[idx] > a->data[ret])
+			ret = idx;
+		if (idx == a->bottom)
+			break;
+		idx = before_idx(a, idx);
+	}
+	return (ret);
+}
+
+
 void	operate(t_stack *a, t_stack *b, int b_idx)
 {
-	int	cnt;
-	int rb_cnt;
-	int rrb_cnt;
-	int	ra_cnt;
-	int	rra_cnt;
-	int a_idx;
-	cnt = 0;
-	rb_cnt = (b->top + b->total_size - b_idx) % b->total_size;
-	rrb_cnt = (b_idx + b->total_size  - b->bottom) % b->total_size + 1;
-	if (rb_cnt > rrb_cnt)
-	{
-		for(int i=0;i<rrb_cnt;i++)
-			rrb(a,b);
-	}
-	else
-	{
-		for(int i=0;i<rb_cnt;i++)
-			rb(a,b);
-	}
-	a_idx = a_start;
-	for(int i=0;i<a->len;i++)
-	{
-		int before = a_idx;
-		if (a_idx == a->top)
-			a_idx = a->bottom;
-		else
-			a_idx = next_idx(a, a_idx);
-		if (a->data[a_idx] < b->data[b_idx])
-			break;
-	}
-	ra_cnt = (a->top + a->total_size - a_idx) % a->total_size;
-	rra_cnt = (a_idx + a->total_size  - a->bottom + 1) % a->total_size;
-	if (ra_cnt > rra_cnt)
-	{
-		for(int i=0;i<rra_cnt;i++)
-		{
-			rra(a,b);
-			if (a_start == a->bottom)
-			{
-				a_start = a->top;
-			}
-			else
-				a_start = before_idx(a, a_start);
-		}
-	}
-	else
-	{
-		for(int i=0;i<ra_cnt;i++)
-		{
-			ra(a,b);
-			if (a_start == a->top)
-			{
-				a_start = a->bottom;
-			}
-			else
-				a_start = next_idx(a, a_start);
-		}
-	}
+	int oper_count[4];
 
+	count_operation(a, b, b_idx, oper_count);
+	for(int i=0;i<oper_count[0];i++)
+		rb(a, b);
+	for(int i=0;i<oper_count[1];i++)
+		rrb(a, b);
+
+	for(int i=0;i<oper_count[2];i++)
+		ra(a, b);
+	for(int i=0;i<oper_count[3];i++)
+		rra(a, b);
+	pa(a, b);
+	if (a->len == 1)
+		a_biggest_idx = a->top;
+
+	a_biggest_idx = find_biggest(a);	//update biggest
 }
 
 int	main(int argc, char *argv[])
@@ -229,13 +215,23 @@ int	main(int argc, char *argv[])
 		idx++;
 	}
 	partitioning(&a, &b);
-	a_start = a.top;
-	a_end = a.bottom;
+
 	for(int i=0;i<b.total_size;i++)
 	 	operate(&a, &b, select_one(&a, &b));
 
+	int t = (a.top + a.total_size - a_biggest_idx + 1) % a.total_size;
+	if (t > (a_biggest_idx + a.total_size - a.bottom) % a.total_size)
+	{
+		t = (a_biggest_idx + a.total_size - a.bottom) % a.total_size;
+		for(int i=0;i < t;i++)
+			rra(&a, &b);
+	}
+	else
+	{
+	for(int i=0;i < t;i++)
+		ra(&a, &b);
+	}
 
-
-	info(&a);
-	info(&b);
+	//info(&a);
+	//info(&b);
 }
