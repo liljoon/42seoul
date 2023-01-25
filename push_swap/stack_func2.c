@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stack_func2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 22:18:47 by isunwoo          ###   ########.fr       */
+/*   Created: 2023/01/25 20:29:58 by isunwoo           #+#    #+#             */
+/*   Updated: 2023/01/25 20:42:34 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+void	ra(t_stack *a, t_stack *b)
 {
-	t_stack	a;
-	t_stack	b;
-	int		i;
+	push_front(a, pop_back(a));
+	write(1, "ra\n", 3);
+}
 
-	init_stack_data(&a, &b, argc, argv);
-	check_already_sorted(&a);
-	check_duplicates(&a);
-	if (a.len <= 5)
-	{
-		sort_below_5(&a, &b);
-		return (0);
-	}
-	partitioning(&a, &b);
-	i = 0;
-	while (i++ < b.total_size)
-		operate(&a, &b, select_one(&a, &b));
-	smallest_to_top(&a, &b);
-	free(a.data);
-	free(b.data);
+void	rb(t_stack *a, t_stack *b)
+{
+	push_front(b, pop_back(b));
+	write(1, "rb\n", 3);
+}
+
+void	rr(t_stack *a, t_stack *b)
+{
+	ra(a, b);
+	rb(a, b);
+	write(1, "rr\n", 3);
+}
+
+void	rra(t_stack *a, t_stack *b)
+{
+	push_back(a, pop_front(a));
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack *a, t_stack *b)
+{
+	push_back(b, pop_front(b));
+	write(1, "rrb\n", 4);
 }
