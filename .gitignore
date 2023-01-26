@@ -2,10 +2,11 @@
 *.out
 /test.c
 /test.txt
-.gitignore
 .vscode
 *.o
 *.a
 *.sh
 /so_long/minilibx_opengl_20191021/
 so_long/so_long
+push_swap
+*.txt
