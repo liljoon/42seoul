@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 22:18:30 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 22:18:45 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:08:12 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,20 @@ void	operate(t_stack *a, t_stack *b, int b_idx)
 	count_operation(a, b, b_idx, oper_count);
 	i = 0;
 	while (i++ < oper_count[0])
-		rb(a, b);
+		rb(b);
 	i = 0;
 	while (i++ < oper_count[1])
-		rrb(a, b);
+		rrb(b);
 	i = 0;
 	while (i++ < oper_count[2])
-		ra(a, b);
+		ra(a);
 	i = 0;
 	while (i++ < oper_count[3])
-		rra(a, b);
+		rra(a);
 	pa(a, b);
 }
 
-void	smallest_to_top(t_stack *a, t_stack *b)
+void	smallest_to_top(t_stack *a)
 {
 	int	smallest_idx;
 	int	cnt_oper[2];
@@ -115,11 +115,11 @@ void	smallest_to_top(t_stack *a, t_stack *b)
 	if (cnt_oper[0] > cnt_oper[1])
 	{
 		while (i++ < cnt_oper[1])
-			rra(a, b);
+			rra(a);
 	}
 	else
 	{
 		while (i++ < cnt_oper[0])
-			ra(a, b);
+			ra(a);
 	}
 }

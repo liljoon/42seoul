@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:14 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 22:20:48 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:08:08 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_stack{
 
 int		select_one(t_stack *a, t_stack *b);
 void	operate(t_stack *a, t_stack *b, int b_idx);
-void	smallest_to_top(t_stack *a, t_stack *b);
+void	smallest_to_top(t_stack *a);
 
 void	init_stack(t_stack *st, int size);
 int		pop_back(t_stack *st);
@@ -37,16 +37,16 @@ int		next_idx(t_stack *st, int idx);
 
 void	sort_below_5(t_stack *a, t_stack *b);
 
-void	sa(t_stack *a, t_stack *b);
-void	sb(t_stack *a, t_stack *b);
+void	sa(t_stack *a);
+void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 void	pa(t_stack *a, t_stack *b);
 void	pb(t_stack *a, t_stack *b);
-void	ra(t_stack *a, t_stack *b);
-void	rb(t_stack *a, t_stack *b);
+void	ra(t_stack *a);
+void	rb(t_stack *b);
 void	rr(t_stack *a, t_stack *b);
-void	rra(t_stack *a, t_stack *b);
-void	rrb(t_stack *a, t_stack *b);
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
 void	error_exit(void);

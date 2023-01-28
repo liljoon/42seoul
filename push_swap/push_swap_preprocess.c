@@ -6,87 +6,75 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 17:07:25 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 21:22:11 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/28 15:22:21 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_duplicates(t_stack *a)
-{
-	int	idx;
-	int	compare;
-
-	if (a->len <= 1)
-		return ;
-	idx = a->top;
-	while (idx != a->bottom)
-	{
-		compare = before_idx(a, idx);
-		while (1)
-		{
-			if (a->data[idx] == a->data[compare])
-				error_exit();
-			if (compare == a->bottom)
-				break ;
-			compare = before_idx(a, compare);
-		}
-		idx = before_idx(a, idx);
-	}
-}
-
 int	check_and_atoi(char *s)
 {
 	long	ret;
+	int		sign;
 
+	sign = 1;
+	if (*s == '-' || *s == '+')
+	{
+		sign = 44 - *s;
+		s++;
+	}
+	if (*s == ' ' || *s == 0)
+		error_exit();
 	ret = 0;
-	while (*s)
+	while (*s && *s != ' ')
 	{
 		if (*s >= '0' && *s <= '9')
 			ret = ret * 10 + *s - '0';
 		else
 			error_exit();
-		if (ret > 2147483647L)
+		if (ret > 2147483648L)
 			error_exit();
 		s++;
 	}
-	return ((int)ret);
+	if (ret == 2147483648 && sign == 1)
+		error_exit();
+	return ((int)(sign * ret));
 }
 
-void	split_int(t_stack *a, t_stack *b, char *s)
+int	count_words(char *s)
 {
-	long	temp;
-	int		cnt_space;
-	char	*str;
+	int	ret;
 
-	cnt_space = 0;
-	str = s;
-	while (*str)
+	ret = 0;
+	while (*s)
 	{
-		if (*str == ' ')
-			cnt_space++;
-		str++;
+		while (*s && *s == ' ')
+			s++;
+		if (*s != 0)
+			ret += 1;
+		while (*s && *s != ' ')
+			s++;
 	}
-	init_stack(a, cnt_space + 1);
-	init_stack(b, cnt_space + 1);
+	return (ret);
+}
+
+void	split_int(t_stack *a, char *s)
+{
+	int	temp;
+
 	temp = 0;
 	while (*s)
 	{
-		if (*s >= '0' && *s <= '9')
-			temp = temp * 10 + (*s - '0');
-		else
-			error_exit();
-		if (temp > 2147483647L)
-			error_exit();
-		s++;
-		if (*s == ' ')
-		{
-			push_front(a, (int)temp);
-			temp = 0;
+		while (*s && *s == ' ')
 			s++;
+		if (*s != 0)
+		{
+			temp = check_and_atoi(s);
+			push_front(a, temp);
 		}
+		while (*s && *s != ' ')
+			s++;
 	}
-	push_front(a, (int)temp);
 }
 
 void	check_already_sorted(t_stack *a)
@@ -114,23 +102,25 @@ void	check_already_sorted(t_stack *a)
 void	init_stack_data(t_stack *a, t_stack *b, int argc, char *argv[])
 {
 	int	idx;
+	int	words_cnt;
 	int	temp;
 
-	if (argc > 2)
+	if (argc >= 2)
 	{
-		init_stack(a, argc - 1);
-		init_stack(b, argc - 1);
+		words_cnt = 0;
 		idx = 1;
 		while (idx < argc)
 		{
-			temp = check_and_atoi(argv[idx]);
-			push_front(a, temp);
-			idx++;
+			temp = count_words(argv[idx++]);
+			if (temp == 0)
+				error_exit();
+			words_cnt += temp;
 		}
-	}
-	else if (argc == 2)
-	{
-		split_int(a, b, argv[1]);
+		init_stack(a, words_cnt);
+		init_stack(b, words_cnt);
+		idx = 1;
+		while (idx < argc)
+			split_int(a, argv[idx++]);
 	}
 	else
 		exit(0);

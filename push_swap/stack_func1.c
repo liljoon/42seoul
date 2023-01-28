@@ -6,13 +6,13 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:16 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 20:38:17 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:01:51 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a, t_stack *b)
+void	sa(t_stack *a)
 {
 	int	temp1;
 	int	temp2;
@@ -26,7 +26,7 @@ void	sa(t_stack *a, t_stack *b)
 	write(1, "sa\n", 3);
 }
 
-void	sb(t_stack *a, t_stack *b)
+void	sb(t_stack *b)
 {
 	int	temp1;
 	int	temp2;

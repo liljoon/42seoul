@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:45:18 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 20:29:31 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 22:32:57 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	init_stack(t_stack *st, int size)
 	st->top = size - 1;
 	st->bottom = 0;
 	st->data = malloc(size * sizeof(int));
+	if (!st->data)
+		exit(1);
 	st->len = 0;
 	st->total_size = size;
 }

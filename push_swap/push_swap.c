@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:47:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 22:18:47 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 20:11:41 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	main(int argc, char *argv[])
 	int		i;
 
 	init_stack_data(&a, &b, argc, argv);
-	check_already_sorted(&a);
 	check_duplicates(&a);
+	check_already_sorted(&a);
 	if (a.len <= 5)
 	{
 		sort_below_5(&a, &b);
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	while (i++ < b.total_size)
 		operate(&a, &b, select_one(&a, &b));
-	smallest_to_top(&a, &b);
+	smallest_to_top(&a);
 	free(a.data);
 	free(b.data);
 }

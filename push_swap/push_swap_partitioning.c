@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 20:18:47 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/25 21:53:47 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/27 22:32:37 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	division(t_stack *st, int n, int *divs)
 
 	temp = st->top;
 	arr = malloc(n * sizeof(int));
+	if (!arr)
+		exit(1);
 	i = 0;
 	while (i < n)
 	{
@@ -69,10 +71,10 @@ void	partitioning(t_stack *a, t_stack *b)
 		if (a->data[a->top] < divs[0])
 		{
 			pb(a, b);
-			rb(a, b);
+			rb(b);
 		}
 		else if (a->data[a->top] > divs[1])
-			ra(a, b);
+			ra(a);
 		else
 			pb(a, b);
 		i++;
