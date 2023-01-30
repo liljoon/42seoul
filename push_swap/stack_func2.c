@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 20:29:58 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/01/27 18:07:38 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/01/30 20:53:11 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	rb(t_stack *b)
 
 void	rr(t_stack *a, t_stack *b)
 {
-	ra(a);
-	rb(b);
+	push_front(a, pop_back(a));
+	push_front(b, pop_back(b));
 	write(1, "rr\n", 3);
 }
 
