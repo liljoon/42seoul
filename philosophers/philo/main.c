@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:42:03 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/03 01:43:18 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/05 21:40:55 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	init_philo_info(int argc, char *argv[], t_philo_info *philo_info)
 		pthread_mutex_init(philo_info->mutex_fork + idx, NULL);
 		idx++;
 	}
+	philo_info->who_died = 0;
 	return (0);
 }
 
@@ -49,6 +50,7 @@ t_philo	*init_philo(t_philo_info *philo_info)
 		ret[idx].idx = idx;
 		ret[idx].philo_info = philo_info;
 		ret[idx].state = 1;
+		ret[idx].ate_num = 0;
 		idx++;
 	}
 	return (ret);
@@ -76,8 +78,6 @@ int	main(int argc, char *argv[])
 	if (init_philo_info(argc, argv, &philo_info) == -1)
 		return (1);
 	philos = init_philo(&philo_info);
-
 	start_philo(philos);
-
 	free_all(&philo_info, philos);
 }
