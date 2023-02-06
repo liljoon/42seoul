@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:42:03 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/05 21:40:55 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/06 14:44:41 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_philo_info(int argc, char *argv[], t_philo_info *philo_info)
 	if (argc == 6)
 		philo_info->num_of_must_eat = ft_atoi(argv[5]);
 	else
-		philo_info->num_of_must_eat = -1;
+		philo_info->num_of_must_eat = 2147483647;
 	philo_info->mutex_fork = \
 		malloc(sizeof(pthread_mutex_t) * philo_info->num_philo);
 	idx = 0;
@@ -49,7 +49,6 @@ t_philo	*init_philo(t_philo_info *philo_info)
 	{
 		ret[idx].idx = idx;
 		ret[idx].philo_info = philo_info;
-		ret[idx].state = 1;
 		ret[idx].ate_num = 0;
 		idx++;
 	}

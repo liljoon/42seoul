@@ -6,13 +6,13 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/02 16:39:59 by isunwoo           #+#    #+#              #
-#    Updated: 2023/02/03 01:34:22 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/02/06 14:24:22 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-SRCS	=	main.c	ft_atoi.c	philo.c	philo_utils.c
+SRCS	=	main.c	ft_atoi.c	philo.c	philo_utils.c	philo_monitoring.c
 
 INCS	=	philo.h
 

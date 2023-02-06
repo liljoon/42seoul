@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:48:29 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/05 21:40:40 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:39:55 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_philo_info
 typedef struct s_philo
 {
 	int				idx;
-	int				state;	// 0 : sleeping | 1 : thinking | 2 : eating | -1 : printed
 	int				ate_num;
 	t_philo_info	*philo_info;
 	t_timeval		last_ate_time;
@@ -43,9 +42,14 @@ typedef struct s_philo
 
 int		ft_atoi(const char *str);
 
+void	philosopher(t_philo *philo);
 void	start_philo(t_philo *philos);
 
 int		left(int idx, int n);
 int		right(int idx, int n);
+long	get_time_diff_ms(t_timeval start_time);
+void	my_msleep(int ms);
+
+void	monitoring(t_philo *philos);
 
 #endif
