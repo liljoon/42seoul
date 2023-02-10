@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 01:34:08 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/06 17:43:32 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/06 19:22:04 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	start_philo(t_philo *philos)
 
 	if (philos->philo_info->num_philo == 1)
 	{
-		printf("%d %d died\n", philos->philo_info->time_to_die, 1);
+		printf("%d %d is thinking\n", 0, 1);
+		my_msleep(philos->philo_info->time_to_die);
+		printf("%d %d died\n", philos->philo_info->time_to_die + 1, 1);
 		return ;
 	}
 	tid = malloc(sizeof(tid) * (philos->philo_info->num_philo + 1));
@@ -69,9 +71,6 @@ void	start_philo(t_philo *philos)
 	pthread_create(tid + idx, NULL, (void *)monitoring, philos);
 	idx = 0;
 	while (idx < philos->philo_info->num_philo + 1)
-	{
-		pthread_join(tid[idx], NULL);
-		idx++;
-	}
+		pthread_join(tid[idx++], NULL);
 	free(tid);
 }
