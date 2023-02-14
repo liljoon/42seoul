@@ -6,13 +6,30 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:01:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/13 16:00:07 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/14 22:53:02 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+void	exec_command(char *command, char *envp[])
+{
+	pid_t	pid;
+
+	pid = fork();
+	char *argv[]   = { "/bin/ls", NULL};
+	if (pid == 0)
+	{
+		execve("/bin/ls", argv, envp);
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+	}
+	return ;
+}
+
+int	main(int argc, char *argv[], char *envp[])
 {
 	char	*command;
 
@@ -27,9 +44,10 @@ int	main(void)
 			printf("exit\n");
 			exit(0);
 		}
-		printf("%s\n", command);
+		//printf("%s\n", command);
 		if (command && *command)
 			add_history(command);
+		exec_command(command, envp);
 		free(command);
 	}
 }
