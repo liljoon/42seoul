@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 13:01:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 13:36:54 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 15:16:38 by isunwoo           #+#    #+#             */
+/*   Updated: 2023/02/16 15:26:49 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*command;
+	size_t	idx;
 
-	set_signal();
-	while (1)
+	if (!dst && !src)
+		return (dst);
+	idx = 0;
+	while (idx < n)
 	{
-		command = readline("minishell$ ");
-		if (!command)
-		{
-			printf("\033[1A");
-			printf("\033[11C");
-			printf("exit\n");
-			exit(0);
-		}
-		if (command && *command)
-			add_history(command);
-		exec_command(command, envp);
-		free(command);
+		*((unsigned char *)dst + idx) = *((unsigned char *)src + idx);
+		idx++;
 	}
+	return (dst);
 }

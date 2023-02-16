@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 13:01:17 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 13:36:54 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 17:41:50 by isunwoo           #+#    #+#             */
+/*   Updated: 2023/02/16 15:12:48 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*command;
+	size_t				idx;
+	const unsigned char	*s1_u;
+	const unsigned char	*s2_u;
 
-	set_signal();
-	while (1)
+	s1_u = (const unsigned char *)s1;
+	s2_u = (const unsigned char *)s2;
+	idx = 0;
+	while (idx < n)
 	{
-		command = readline("minishell$ ");
-		if (!command)
-		{
-			printf("\033[1A");
-			printf("\033[11C");
-			printf("exit\n");
-			exit(0);
-		}
-		if (command && *command)
-			add_history(command);
-		exec_command(command, envp);
-		free(command);
+		if (s1_u[idx] != s2_u[idx])
+			return (s1_u[idx] - s2_u[idx]);
+		else if (s1_u[idx] == '\0' && s2_u[idx] == '\0')
+			return (0);
+		idx++;
 	}
+	return (0);
 }

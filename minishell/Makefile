@@ -6,13 +6,14 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 13:47:44 by isunwoo           #+#    #+#              #
-#    Updated: 2023/02/14 22:44:05 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/02/16 15:27:05 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS	=	#-Wall -Wextra -Werror
 
-SRCS	=	main.c	sig_handle.c
+SRCS	=	main.c	sig_handle.c	exec_command.c	ft_split.c	ft_memcpy.c	ft_strncmp.c \
+			ft_strjoin.c
 
 INCS	=	minishell.h
 

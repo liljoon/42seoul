@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:01:29 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/13 16:08:15 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/16 15:27:20 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <termios.h>
+# include <errno.h>
 
 void	set_signal(void);
+void	exec_command(char *command, char *envp[]);
+char	**ft_split(char const *s, char c);
+char	**clear_all(char **res);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
