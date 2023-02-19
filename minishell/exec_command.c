@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:36:25 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/17 17:19:40 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/19 17:55:59 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	trans_env(char *argv[])
 	{
 		if ((*argv)[0] == '$')
 		{
-			*argv = getenv(&(*argv)[1]);
+			if ((*argv)[1] == '?')
+				*argv = ft_itoa(g_exit_status);
+			else
+				*argv = getenv(&(*argv)[1]);
 		}
 		argv++;
 	}
@@ -65,11 +68,12 @@ void	exec_command(char *command, char *envp[])
 			exit(0);
 		trans_env(argv);
 		check_path(argv, envp);
-		exit(1);
+		exit(127);
 	}
 	else
 	{
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &g_exit_status, 0);
+		g_exit_status /= 256;
 	}
 	return ;
 }
