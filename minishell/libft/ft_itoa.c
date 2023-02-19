@@ -6,11 +6,11 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 18:43:01 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/19 17:22:49 by isunwoo          ###   ########.fr       */
+/*   Updated: 2022/07/18 12:53:24 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 static char	*setting(int n, int digit, int *idx)
 {

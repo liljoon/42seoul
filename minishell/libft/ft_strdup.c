@@ -1,50 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 21:44:40 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 15:26:44 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/07 18:49:14 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/21 14:42:38 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+static int	len(const char *s)
 {
-	size_t	idx;
+	int	cnt;
 
-	idx = 0;
-	while (s[idx] != '\0')
-		idx++;
-	return (idx);
+	cnt = 0;
+	while (s[cnt] != '\0')
+		cnt++;
+	return (cnt);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(const char *s1)
 {
-	size_t	idx_p;
+	int		s1_len;
+	int		idx;
 	char	*p;
 
-	if (!s1 || !s2)
-		return (NULL);
-	p = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (p == NULL)
-		return (NULL);
-	idx_p = 0;
-	while (*s1)
+	s1_len = len(s1);
+	p = malloc(s1_len + 1);
+	if (p == 0)
+		return (p);
+	idx = 0;
+	while (s1[idx] != '\0')
 	{
-		p[idx_p] = *s1;
-		s1++;
-		idx_p++;
+		p[idx] = s1[idx];
+		idx++;
 	}
-	while (*s2)
-	{
-		p[idx_p] = *s2;
-		s2++;
-		idx_p++;
-	}
-	p[idx_p] = '\0';
+	p[idx] = '\0';
 	return (p);
 }

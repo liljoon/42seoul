@@ -6,11 +6,11 @@
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 19:42:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 13:44:03 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/02/19 22:22:59 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 static int	count_words(char const *s, char c)
 {

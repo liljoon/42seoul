@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 15:16:38 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 15:26:49 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/06 16:38:57 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/07 14:14:14 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_isalnum(int c)
 {
-	size_t	idx;
-
-	if (!dst && !src)
-		return (dst);
-	idx = 0;
-	while (idx < n)
-	{
-		*((unsigned char *)dst + idx) = *((unsigned char *)src + idx);
-		idx++;
-	}
-	return (dst);
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else
+		return (0);
 }

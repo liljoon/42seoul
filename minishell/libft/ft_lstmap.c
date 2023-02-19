@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 17:41:50 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/02/16 15:12:48 by isunwoo          ###   ########.fr       */
+/*   Created: 2022/07/11 19:06:11 by isunwoo           #+#    #+#             */
+/*   Updated: 2022/07/19 19:28:52 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t				idx;
-	const unsigned char	*s1_u;
-	const unsigned char	*s2_u;
+	t_list	*it;
+	t_list	*res;
+	t_list	*temp;
 
-	s1_u = (const unsigned char *)s1;
-	s2_u = (const unsigned char *)s2;
-	idx = 0;
-	while (idx < n)
+	res = NULL;
+	it = lst;
+	while (it)
 	{
-		if (s1_u[idx] != s2_u[idx])
-			return (s1_u[idx] - s2_u[idx]);
-		else if (s1_u[idx] == '\0' && s2_u[idx] == '\0')
-			return (0);
-		idx++;
+		temp = ft_lstnew(f(it->content));
+		if (!temp)
+		{
+			ft_lstclear(&res, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&res, temp);
+		it = it->next;
 	}
-	return (0);
+	return (res);
 }
