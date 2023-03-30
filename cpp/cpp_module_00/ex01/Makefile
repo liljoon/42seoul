@@ -1,11 +1,15 @@
 CXX			:=	c++
-CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	:=	-Wall -Wextra -Werror -g -std=c++98
 
-SRCS		:=
+SRCS		:=	PhoneBook.cpp	Contact.cpp	main.cpp
+
+INCS		:=	PhoneBook.hpp	Contact.hpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-NAME		:=
+NAME		:=	my_awesome_phonebook
+
+
 
 .SUFFIXES : .cpp .o
 .cpp.o :
