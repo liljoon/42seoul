@@ -17,6 +17,7 @@ public:
 	Contact();
 	Contact(int idx, std::string fn, std::string ln, std::string nn, std::string pn, std::string ds);
 	int get_idx();
+	void set_idx(int idx);
 	std::string get_first_name();
 	std::string get_last_name();
 	std::string get_nick_name();

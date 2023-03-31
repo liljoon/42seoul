@@ -14,6 +14,11 @@ int Contact::get_idx()
 	return this->idx;
 }
 
+void Contact::set_idx(int idx)
+{
+	this->idx = idx;
+}
+
 std::string Contact::get_first_name()
 {
 	return this->first_name;
