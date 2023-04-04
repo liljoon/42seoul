@@ -1,6 +1,5 @@
 CXX			:=	c++
-CXXFLAGS	:=	 -std=c++98
-#-Wall -Wextra -Werror
+CXXFLAGS	:=	 -std=c++98 -Wall -Wextra -Werror
 SRCS		:=	Account.cpp	tests.cpp print_utils.cpp
 
 INCS		:=	Account.hpp print_utils.hpp
