@@ -17,8 +17,8 @@ public:
 	void loop_start();
 	void add_process();
 	void search_process();
-	int find_data(int idx);
 	void print_contact(int data_idx);
+	void print_all_contacts();
 };
 
 #endif
