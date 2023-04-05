@@ -1,5 +1,5 @@
-#ifndef CONTACT_H
-#define CONTACT_H
+#ifndef PRINT_UTILS_H
+#define PRINT_UTILS_H
 
 void print_timestamp();
 void print_index(int idx);

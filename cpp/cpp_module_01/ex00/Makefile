@@ -12,8 +12,8 @@ NAME		:=	test
 
 all	: $(NAME)
 
-$(NAME)	:	$(SRCS)
-	$(CXX) -o $@ $^
+$(NAME)	:	$(SRCS) $(INCS)
+	$(CXX) $(SRCS) -o $@
 
 fclean :
 	rm -f $(NAME)
