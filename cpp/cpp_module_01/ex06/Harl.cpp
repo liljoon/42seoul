@@ -55,18 +55,17 @@ void Harl::complain(std::string level)
 
 	switch (djb2_hash(level))
 	{
+	default:
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		break;
 	case 210670746764:
 		(this->*func_ptr[0])();
-		break;
 	case 6384151633:
 		(this->*func_ptr[1])();
-		break;
 	case 229444843303835:
 		(this->*func_ptr[2])();
-		break;
 	case 210672417103:
 		(this->*func_ptr[3])();
-		break;
 	}
 	return;
 }
