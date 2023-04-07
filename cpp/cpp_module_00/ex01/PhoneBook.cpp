@@ -113,6 +113,23 @@ void PhoneBook::print_all_contacts()
 	}
 }
 
+int check_digit(std::string str)
+{
+	int i = 0;
+
+	if (str.length() == 0)
+		return 1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (i < str.length())
+	{
+		if (!isdigit(str[i]))
+			return 1;
+		i++;
+	}
+	return 0;
+}
+
 void PhoneBook::search_process()
 {
 	std::string input;
@@ -122,7 +139,7 @@ void PhoneBook::search_process()
 	std::cout << "Find index : ";
 	my_getline(input);
 	idx = std::atoi(input.c_str());
-	if (idx <= 0 || idx >= 8)
+	if (idx <= 0 || idx >= 8 || check_digit(input))
 	{
 		std::cout << "Wrong Input" << std::endl;
 		return;
