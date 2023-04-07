@@ -19,13 +19,13 @@ void replace_str(std::string &str, std::string before, std::string after)
 
 void copy_file(std::string filename, std::string str1, std::string str2)
 {
-	std::ifstream infile(filename);
+	std::ifstream infile(filename.c_str());
 	if (!infile.is_open())
 	{
 		std::cout << "Error" << std::endl;
 		exit(1);
 	}
-	std::ofstream outfile(filename + ".replace");
+	std::ofstream outfile((filename + ".replace").c_str());
 	if (!outfile.is_open())
 	{
 		std::cout << "Error" << std::endl;
