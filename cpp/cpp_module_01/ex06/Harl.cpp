@@ -38,14 +38,13 @@ unsigned long djb2_hash(std::string str)
 {
 	unsigned long hash = 5381;
 
-	for (int i = 0; i < str.size(); i++)
+	for (unsigned int i = 0; i < str.size(); i++)
 		hash = ((hash << 5) + hash) + str[i];
 	return hash;
 }
 
 void Harl::complain(std::string level)
 {
-	int idx;
 	void (Harl::*func_ptr[4])(void);
 
 	func_ptr[0] = &Harl::debug;

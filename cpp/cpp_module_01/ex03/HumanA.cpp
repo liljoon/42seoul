@@ -1,7 +1,7 @@
 #include "HumanA.hpp"
 #include <iostream>
 
-HumanA::HumanA(std::string name, Weapon &wp) : name(name), wp(&wp)
+HumanA::HumanA(std::string name, Weapon &wp) : wp(&wp), name(name)
 {
 }
 

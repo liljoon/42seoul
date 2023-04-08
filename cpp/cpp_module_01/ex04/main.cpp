@@ -4,7 +4,7 @@
 
 void replace_str(std::string &str, std::string before, std::string after)
 {
-	int idx = 0;
+	unsigned int idx = 0;
 	while (idx < str.size())
 	{
 		idx = str.find(before, idx);
