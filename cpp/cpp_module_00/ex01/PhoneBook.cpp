@@ -115,7 +115,7 @@ void PhoneBook::print_all_contacts()
 
 int check_digit(std::string str)
 {
-	int i = 0;
+	unsigned long i = 0;
 
 	if (str.length() == 0)
 		return 1;

@@ -45,13 +45,10 @@ unsigned long djb2_hash(std::string str)
 
 void Harl::complain(std::string level)
 {
-	int idx;
-	void (Harl::*func_ptr[4])(void);
-
-	func_ptr[0] = &Harl::debug;
-	func_ptr[1] = &Harl::info;
-	func_ptr[2] = &Harl::warning;
-	func_ptr[3] = &Harl::error;
+	void (Harl::*func_ptr[4])(void) = {&Harl::debug,
+									   &Harl::info,
+									   &Harl::warning,
+									   &Harl::error};
 
 	switch (djb2_hash(level))
 	{
