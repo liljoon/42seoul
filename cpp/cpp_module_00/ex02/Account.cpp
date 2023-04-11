@@ -1,7 +1,6 @@
 #include "Account.hpp"
 #include "print_utils.hpp"
 #include <iostream>
-#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
