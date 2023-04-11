@@ -34,36 +34,31 @@ void Harl::error(void)
 			  << std::endl;
 }
 
-unsigned long djb2_hash(std::string str)
-{
-	unsigned long hash = 5381;
-
-	for (unsigned int i = 0; i < str.size(); i++)
-		hash = ((hash << 5) + hash) + str[i];
-	return hash;
-}
-
 void Harl::complain(std::string level)
 {
-	void (Harl::*func_ptr[4])(void);
+    int idx;
+    void (Harl::*func_ptr[4])(void) = {&Harl::debug,
+                                       &Harl::info,
+                                       &Harl::warning,
+                                       &Harl::error};
+    std::string cmd_str[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    for (idx = 0; idx < 4; idx++) {
+        if (level == cmd_str[idx])
+            break;
+    }
 
-	func_ptr[0] = &Harl::debug;
-	func_ptr[1] = &Harl::info;
-	func_ptr[2] = &Harl::warning;
-	func_ptr[3] = &Harl::error;
-
-	switch (djb2_hash(level))
+	switch (idx)
 	{
 	default:
 		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		break;
-	case 210670746764:
+	case 0:
 		(this->*func_ptr[0])();
-	case 6384151633:
+	case 1:
 		(this->*func_ptr[1])();
-	case 229444843303835:
+	case 2:
 		(this->*func_ptr[2])();
-	case 210672417103:
+	case 3:
 		(this->*func_ptr[3])();
 	}
 	return;
