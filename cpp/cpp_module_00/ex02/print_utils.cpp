@@ -9,7 +9,7 @@ void print_timestamp() {
 
     std::time(&time_now);
     tm = std::localtime(&time_now);
-    std::strftime(buf, 20, "[%Y%m%d_%H%M%S]", tm);
+    std::strftime(buf, 20, "[%Y%m%d_%H%M%S] ", tm);
     std::cout << buf;
 }
 
