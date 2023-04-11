@@ -33,6 +33,11 @@ public:
 	Fixed operator-(const Fixed &r);
 	Fixed operator*(const Fixed &r);
 	Fixed operator/(const Fixed &r);
+
+	Fixed &operator++();
+	Fixed operator++(int);
+	Fixed &operator--();
+	Fixed operator--(int);
 };
 
 std::ostream &operator<<(std::ostream &os, const Fixed &val);

@@ -118,6 +118,34 @@ Fixed Fixed::operator/(const Fixed &r)
 	return ret;
 }
 
+Fixed &Fixed::operator++()
+{
+	raw_bits += 1;
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed temp(*this);
+
+	raw_bits += 1;
+	return temp;
+}
+
+Fixed &Fixed::operator--()
+{
+	raw_bits -= 1;
+	return *this;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed temp(*this);
+
+	raw_bits -= 1;
+	return temp;
+}
+
 std::ostream &operator<<(std::ostream &os, const Fixed &val)
 {
 	std::cout << val.toFloat();
