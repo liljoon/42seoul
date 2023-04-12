@@ -52,12 +52,12 @@ void Fixed::setRawBits(int const raw)
 float Fixed::toFloat(void) const
 {
 
-	return ((float)this->raw_bits / 256);
+	return ((float) this->raw_bits / 256);
 }
 
 int Fixed::toInt(void) const
 {
-	return (int)(this->raw_bits >> 8);
+	return (int) (this->raw_bits >> 8);
 }
 
 bool Fixed::operator<(const Fixed &r)
@@ -144,6 +144,38 @@ Fixed Fixed::operator--(int)
 
 	raw_bits -= 1;
 	return temp;
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.raw_bits <= b.raw_bits)
+		return a;
+	else
+		return b;
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.raw_bits <= b.raw_bits)
+		return a;
+	else
+		return b;
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.raw_bits >= b.raw_bits)
+		return a;
+	else
+		return b;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.raw_bits >= b.raw_bits)
+		return a;
+	else
+		return b;
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &val)
