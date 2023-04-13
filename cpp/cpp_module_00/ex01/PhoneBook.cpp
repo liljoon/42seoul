@@ -139,7 +139,7 @@ void PhoneBook::search_process()
 	std::cout << "Find index : ";
 	my_getline(input);
 	idx = std::atoi(input.c_str());
-	if (idx <= 0 || idx >= 8 || check_digit(input))
+	if (idx <= 0 || idx > 8 || check_digit(input))
 	{
 		std::cout << "Wrong Input" << std::endl;
 		return;
