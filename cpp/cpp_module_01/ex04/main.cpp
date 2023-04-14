@@ -4,15 +4,16 @@
 
 void replace_str(std::string &str, std::string before, std::string after)
 {
-	unsigned int idx = 0;
-	while (idx < str.size())
+	size_t idx = 0;
+
+	while (idx < str.length())
 	{
 		idx = str.find(before, idx);
 		if (idx == str.npos)
 			break;
-		str.erase(idx, before.size());
+		str.erase(idx, before.length());
 		str.insert(idx, after);
-		idx += after.size();
+		idx += after.length();
 	}
 	return;
 }
@@ -32,15 +33,20 @@ void copy_file(std::string filename, std::string str1, std::string str2)
 		exit(1);
 	}
 
-	std::string buf;
+	int length;
 	infile.seekg(0, infile.end);
-	buf.resize(infile.tellg());
+	length = infile.tellg();
+	char *buf = new char[length + 1];
 	infile.seekg(0, infile.beg);
-	infile.read(&buf[0], buf.size());
-	replace_str(buf, str1, str2);
-	outfile << buf;
+	infile.read(buf, length);
+	buf[length] = 0;
+	std::string str_buf = buf;
+	replace_str(str_buf, str1, str2);
+	outfile << str_buf;
 	infile.close();
 	outfile.close();
+
+	delete[] buf;
 	return;
 }
 
