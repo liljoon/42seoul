@@ -13,6 +13,7 @@ public:
 	FragTrap &operator=(FragTrap &other);
 	~FragTrap();
 
+	void highFivesGuys(void);
 };
 
 

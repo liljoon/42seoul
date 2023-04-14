@@ -5,11 +5,13 @@ LDFLAGS		:=
 SRCS		:=	main.cpp\
 				ClapTrap.cpp\
 				ScavTrap.cpp\
+				FragTrap.cpp\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
 INCS		:=	ClapTrap.hpp\
 				ScavTrap.hpp\
+				FragTrap.hpp\
 
 NAME		:=	a.out
 
