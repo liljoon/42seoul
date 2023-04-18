@@ -20,6 +20,10 @@ int main()
 //	const WrongAnimal *wa = new WrongCat();
 //	std::cout << wa->getType() << " " << std::endl;
 //	wa->makeSound();
+// delete wa;
 	// end
+	delete meta;
+	delete j;
+	delete i;
 	return 0;
 }

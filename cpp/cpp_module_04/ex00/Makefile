@@ -21,12 +21,12 @@ INCS		:=	Animal.hpp\
 NAME		:=	a.out
 
 .SUFFIXES : .cpp .o
-.cpp.o :
+.cpp.o : $(INCS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 all	: $(NAME)
 
-$(NAME)	:	$(OBJS) $(INCS)
+$(NAME)	:	$(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) -o $@
 
 clean :
