@@ -8,13 +8,13 @@ Cat::Cat()
 	std::cout << type << " : Default Constructor!" << std::endl;
 }
 
-Cat::Cat(Cat &other)
+Cat::Cat(const Cat &other)
 {
 	this->type = other.type;
 	std::cout << type << " : Copy Constructor!" << std::endl;
 }
 
-Cat &Cat::operator=(Cat &other)
+Cat &Cat::operator=(const Cat &other)
 {
 	this->type = other.type;
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;

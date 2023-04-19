@@ -9,8 +9,8 @@ protected:
 
 public:
 	Cat();
-	Cat(Cat &other);
-	Cat &operator=(Cat &other);
+	Cat(const Cat &other);
+	Cat &operator=(const Cat &other);
 	~Cat();
 	void makeSound() const;
 };

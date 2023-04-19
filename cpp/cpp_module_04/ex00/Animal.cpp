@@ -6,13 +6,13 @@ Animal::Animal() : type("Animal")
 	std::cout << type << " : Default Constructor!" << std::endl;
 }
 
-Animal::Animal(Animal &other)
+Animal::Animal(const Animal &other)
 {
 	std::cout << type << " : Copy Constructor!" << std::endl;
 	this->type = other.type;
 }
 
-Animal &Animal::operator=(Animal &other)
+Animal &Animal::operator=(const Animal &other)
 {
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;
 	this->type = other.type;

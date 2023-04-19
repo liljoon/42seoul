@@ -7,13 +7,13 @@ Dog::Dog()
 	std::cout << type << " : Default Constructor!" << std::endl;
 }
 
-Dog::Dog(Dog &other)
+Dog::Dog(const Dog &other)
 {
 	this->type = other.type;
 	std::cout << type << " : Copy Constructor!" << std::endl;
 }
 
-Dog &Dog::operator=(Dog &other)
+Dog &Dog::operator=(const Dog &other)
 {
 	this->type = other.type;
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;

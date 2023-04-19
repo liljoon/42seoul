@@ -8,13 +8,13 @@ WrongCat::WrongCat()
 	std::cout << type << " : Default Constructor!" << std::endl;
 }
 
-WrongCat::WrongCat(WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other)
 {
 	this->type = other.type;
 	std::cout << type << " : Copy Constructor!" << std::endl;
 }
 
-WrongCat &WrongCat::operator=(WrongCat &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
 	this->type = other.type;
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;
