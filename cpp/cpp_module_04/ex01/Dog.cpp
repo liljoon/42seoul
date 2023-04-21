@@ -21,7 +21,6 @@ Dog &Dog::operator=(const Dog &other)
 	this->type = other.type;
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;
 	return (*this);
-
 }
 
 Dog::~Dog()
@@ -33,9 +32,4 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << type << " : Bark!" << std::endl;
-}
-
-void Dog::setBrain(int idx, std::string input)
-{
-	brain->setIdeas(idx, input);
 }

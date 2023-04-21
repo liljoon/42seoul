@@ -27,14 +27,3 @@ Brain::~Brain()
 {
 	std::cout << "Brain : Destructor" << std::endl;
 }
-
-void Brain::setIdeas(int idx, std::string input)
-{
-	ideas[idx] = input;
-}
-
-void Brain::printIdeas() const
-{
-	for (int i = 0; i < 100; i++)
-		std::cout << i << " : " << ideas[i] << std::endl;
-}
