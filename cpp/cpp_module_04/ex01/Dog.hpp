@@ -7,7 +7,8 @@
 class Dog : public Animal
 {
 private:
-	Brain *brain;
+	Brain *pBrain;
+
 public:
 	Dog();
 	Dog(const Dog &other);
@@ -15,6 +16,5 @@ public:
 	~Dog();
 	void makeSound() const;
 };
-
 
 #endif

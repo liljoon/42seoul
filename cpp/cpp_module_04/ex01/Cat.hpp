@@ -7,7 +7,8 @@
 class Cat : public Animal
 {
 private:
-	Brain *brain;
+	Brain *pBrain;
+
 public:
 	Cat();
 	Cat(const Cat &other);
@@ -15,6 +16,5 @@ public:
 	~Cat();
 	void makeSound() const;
 };
-
 
 #endif

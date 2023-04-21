@@ -4,21 +4,21 @@
 
 Cat::Cat()
 {
-	brain = new Brain();
+	pBrain = new Brain();
 	type = "Cat";
 	std::cout << type << " : Default Constructor!" << std::endl;
 }
 
 Cat::Cat(const Cat &other)
 {
-	brain = new Brain(*(other.brain));
+	pBrain = new Brain(*(other.pBrain));
 	this->type = other.type;
 	std::cout << type << " : Copy Constructor!" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other)
 {
-	*brain = *(other.brain);
+	*pBrain = *(other.pBrain);
 	this->type = other.type;
 	std::cout << type << ": Copy Assignment Operator!" << std::endl;
 	return (*this);
@@ -26,7 +26,7 @@ Cat &Cat::operator=(const Cat &other)
 
 Cat::~Cat()
 {
-	delete brain;
+	delete pBrain;
 	std::cout << type << " : Destructor!" << std::endl;
 }
 
