@@ -2,8 +2,11 @@
 
 #include <iostream>
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
+	hitPoints = 100;
+	energyPoints = 100;
+	attackDamage = 30;
 	std::cout << "FragTrap : " << name << " created!" << std::endl;
 }
 
