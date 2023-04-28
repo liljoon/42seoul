@@ -1,6 +1,8 @@
 #include "Fixed.hpp"
 #include <cmath>
 
+static const int num_fractional_bits = 8;
+
 Fixed::Fixed()
 {
 	this->raw_bits = 0;
@@ -15,7 +17,7 @@ Fixed::Fixed(const int rb)
 
 Fixed::Fixed(const float rb)
 {
-	raw_bits = roundf(rb * 256);
+	raw_bits = roundf(rb * std::pow(2, num_fractional_bits));
 	std::cout << "Float constructor called" << std::endl;
 }
 
@@ -52,12 +54,12 @@ void Fixed::setRawBits(int const raw)
 float Fixed::toFloat(void) const
 {
 
-	return ((float)this->raw_bits / 256);
+	return ((float)this->raw_bits / std::pow(2, num_fractional_bits));
 }
 
 int Fixed::toInt(void) const
 {
-	return (int)(this->raw_bits >> 8);
+	return (int)(this->raw_bits >> num_fractional_bits);
 }
 
 bool Fixed::operator<(const Fixed &r)
@@ -180,6 +182,6 @@ Fixed &Fixed::max(Fixed &a, Fixed &b)
 
 std::ostream &operator<<(std::ostream &os, const Fixed &val)
 {
-	std::cout << val.toFloat();
+	os << val.toFloat();
 	return os;
 }
