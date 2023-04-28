@@ -4,7 +4,15 @@
 
 int main()
 {
-	FragTrap ft;
+	FragTrap ft("aname");
+	FragTrap ft2("bname");
 
-	ft.attack("saf");
+	ft.attack("bname");
+	ft2.takeDamage(30);
+	ft.highFivesGuys();
+
+	ft2.takeDamage(70);
+	ft2.attack("aname");
+	ft2.beRepaired(100);
+	ft2.highFivesGuys();
 }

@@ -15,6 +15,11 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	std::cout << "FragTrap : " << name << " created!" << std::endl;
 }
 
+FragTrap::FragTrap(FragTrap &other) : ClapTrap(other)
+{
+	std::cout << "FragTrap : " << name << " created!" << std::endl;
+}
+
 FragTrap &FragTrap::operator=(FragTrap &other)
 {
 	this->name = other.name;
@@ -30,12 +35,7 @@ FragTrap::~FragTrap()
 	std::cout << "FragTrap : " << name << " deleted!" << std::endl;
 }
 
-FragTrap::FragTrap(FragTrap &other) : ClapTrap(other)
-{
-	std::cout << "FragTrap : " << name << " created!" << std::endl;
-}
-
 void FragTrap::highFivesGuys()
 {
-	std::cout << "FragTrap :  " << name << "High Fives!!" << std::endl;
+	std::cout << "FragTrap : " << name << " High Fives!!" << std::endl;
 }
