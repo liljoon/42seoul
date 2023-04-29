@@ -3,7 +3,7 @@ CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 LDFLAGS		:=
 
 SRCS		:=	main.cpp\
-				Animal.cpp\
+				AAnimal.cpp\
 				Dog.cpp\
 				Cat.cpp\
 				Brain.cpp\
@@ -11,7 +11,7 @@ SRCS		:=	main.cpp\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-INCS		:=	Animal.hpp\
+INCS		:=	AAnimal.hpp\
 				Dog.hpp\
 				Cat.hpp\
 				Brain.hpp\

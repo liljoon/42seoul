@@ -3,18 +3,18 @@
 
 Animal::Animal() : type("Animal")
 {
-	std::cout << type << " : Default Constructor!" << std::endl;
+	std::cout << "Animal : Default Constructor!" << std::endl;
 }
 
 Animal::Animal(const Animal &other)
 {
-	std::cout << type << " : Copy Constructor!" << std::endl;
+	std::cout << "Animal : Copy Constructor!" << std::endl;
 	this->type = other.type;
 }
 
 Animal &Animal::operator=(const Animal &other)
 {
-	std::cout << type << ": Copy Assignment Operator!" << std::endl;
+	std::cout << "Animal: Copy Assignment Operator!" << std::endl;
 	this->type = other.type;
 
 	return (*this);
@@ -22,7 +22,7 @@ Animal &Animal::operator=(const Animal &other)
 
 Animal::~Animal()
 {
-	std::cout << type << " : Destructor!" << std::endl;
+	std::cout << "Animal : Destructor!" << std::endl;
 }
 
 void Animal::makeSound() const

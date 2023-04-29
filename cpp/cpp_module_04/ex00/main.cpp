@@ -16,14 +16,15 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
-	// Wrong Case
-//	const WrongAnimal *wa = new WrongCat();
-//	std::cout << wa->getType() << " " << std::endl;
-//	wa->makeSound();
-// delete wa;
-	// end
 	delete meta;
 	delete j;
 	delete i;
+
+	std::cout << "---------Wrong case---------" << std::endl;
+	const WrongAnimal *wa = new WrongCat();
+	std::cout << wa->getType() << " " << std::endl;
+	wa->makeSound();
+	delete wa;
+
 	return 0;
 }

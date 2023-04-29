@@ -1,35 +1,31 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include <iostream>
 
-Animal::Animal() : type("Animal")
+AAnimal::AAnimal() : type("Animal")
 {
 	std::cout << "Animal : Default Constructor!" << std::endl;
 }
 
-Animal::Animal(const Animal &other)
+AAnimal::AAnimal(const AAnimal &other)
 {
 	std::cout << "Animal : Copy Constructor!" << std::endl;
 	this->type = other.type;
 }
 
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
-	std::cout << "Animal: Copy Assignment Operator!" << std::endl;
+	std::cout << "Animal : Copy Assignment Operator!" << std::endl;
 	this->type = other.type;
 
 	return (*this);
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
 	std::cout << "Animal : Destructor!" << std::endl;
 }
 
-void Animal::makeSound() const
-{
-}
-
-std::string Animal::getType() const
+std::string AAnimal::getType() const
 {
 	return (this->type);
 }
