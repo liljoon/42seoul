@@ -3,10 +3,15 @@ CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 LDFLAGS		:=
 
 SRCS		:=	main.cpp\
+				AMateria.cpp\
+				Cure.cpp\
+				Ice.cpp\
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-INCS		:=	
+INCS		:=	AMateria.hpp\
+				Cure.hpp\
+				Ice.hpp\
 
 NAME		:=	a.out
 
