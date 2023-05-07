@@ -8,11 +8,40 @@ Character::Character()
 
 Character::Character(std::string name)
 {
+	for (int i = 0; i < slotSize; i++)
+		pslotArr[i] = NULL;
 	this->name = name;
+}
+
+Character::Character(const Character &other)
+{
+	for (int i = 0; i < slotSize; i++)
+		pslotArr[i] = NULL;
+	for (int i = 0; i < slotSize; i++)
+		pslotArr[i] = other.pslotArr[i]->clone();
+	name = other.name;
+}
+
+Character &Character::operator=(const Character &other)
+{
+	name = other.name;
+	for (int i = 0; i < slotSize; i++)
+	{
+		if (pslotArr[i] != NULL)
+			delete pslotArr[i];
+		pslotArr[i] = other.pslotArr[i]->clone();
+	}
+
+	return *this;
 }
 
 Character::~Character()
 {
+	for (int i = 0; i < slotSize; i++)
+	{
+		if (pslotArr[i] != NULL)
+			delete pslotArr[i];
+	}
 }
 
 int Character::findEmpty()
@@ -40,12 +69,14 @@ void Character::equip(AMateria *m)
 
 void Character::unequip(int idx)
 {
+	if (pslotArr[idx] == NULL || idx < 0 || idx >= slotSize)
+		return;
 	pslotArr[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (pslotArr[idx] == NULL)
+	if (pslotArr[idx] == NULL || idx < 0 || idx >= slotSize)
 		return;
 	pslotArr[idx]->use(target);
 }

@@ -13,6 +13,8 @@ private:
 
 public:
 	MateriaSource();
+	MateriaSource(const MateriaSource &other);
+	MateriaSource &operator=(const MateriaSource &other);
 	~MateriaSource();
 
 	void learnMateria(AMateria *pmateria);

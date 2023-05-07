@@ -1,20 +1,23 @@
 #include "Cure.hpp"
 #include <iostream>
 
-Cure::Cure(const Cure &other)
-{
-	this->type = other.type;
-}
-
 Cure::Cure() : AMateria("cure")
 {
 }
 
+Cure::Cure(const Cure &other) : AMateria("cure")
+{
+	(void)other;
+}
+
 Cure &Cure::operator=(const Cure &other)
 {
-	this->type = other.type;
-
+	(void)other;
 	return *this;
+}
+
+Cure::~Cure()
+{
 }
 
 AMateria *Cure::clone() const
