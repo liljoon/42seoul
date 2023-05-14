@@ -12,3 +12,4 @@ push_swap
 *.txt
 minishell/minishell
 /philosophers/philo/philo
+/cub3D/minilibx_opengl_20191021/
