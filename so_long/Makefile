@@ -6,7 +6,7 @@
 #    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/24 14:26:17 by isunwoo           #+#    #+#              #
-#    Updated: 2022/11/11 20:51:34 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/05/14 20:30:30 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ OBJS	=	$(SRCS:.c=.o)
 INCS	=	get_next_line/get_next_line.h	so_long.h
 
 $(NAME) : $(OBJS) $(INCS)
-	$(CC) $(OBJS) -o $(NAME) -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(OBJS) -o $(NAME) -L./minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
 .SUFFIXES : .c .o
 .c.o :
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) $< -o $@ -I./minilibx_opengl_20191021
 
 all : $(NAME)
 
