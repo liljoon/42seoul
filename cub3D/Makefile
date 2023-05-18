@@ -6,22 +6,24 @@
 #    By: isunwoo <isunwoo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 20:23:57 by isunwoo           #+#    #+#              #
-#    Updated: 2023/05/18 17:46:16 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/05/18 22:27:56 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= 	cc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-g
+#-Wall -Wextra -Werror
 NAME	=	cub3D
 
 SRCS	=	main.c\
 			raycasting.c\
+			init_app.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
 INCS	=	cub3D.h\
 
-ON_CLUSTER = 0
+ON_CLUSTER = 1
 
 MLX_L	=	-lmlx -framework OpenGL -framework AppKit
 MLX_I	=
