@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isunwoo <isunwoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 20:43:49 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/05/18 17:40:46 by isunwoo          ###   ########.fr       */
+/*   Created: 2023/05/18 17:39:20 by isunwoo           #+#    #+#             */
+/*   Updated: 2023/05/18 17:40:36 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef CUB3D_H
+#define CUB3D_H
 
-int key_hook(int keycode)
-{
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <mlx.h>
 
-int exit_func(void)
-{
-	exit(0);
-}
-
-int main(void)
-{
-	void *mlx;
-	void *mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_key_hook(mlx_win, key_hook, mlx);
-	mlx_hook(mlx_win, 17, 0, exit_func, (void *)0);
-	mlx_loop(mlx);
-}
+#endif

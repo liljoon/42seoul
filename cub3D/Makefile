@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: isunwoo <isunwoo@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: isunwoo <isunwoo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 20:23:57 by isunwoo           #+#    #+#              #
-#    Updated: 2023/05/14 20:47:20 by isunwoo          ###   ########.fr        #
+#    Updated: 2023/05/18 17:46:16 by isunwoo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ CFLAGS	=	-Wall -Wextra -Werror
 NAME	=	cub3D
 
 SRCS	=	main.c\
+			raycasting.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
-INCS	=
+INCS	=	cub3D.h\
 
 ON_CLUSTER = 0
 
