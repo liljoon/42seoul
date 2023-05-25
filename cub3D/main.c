@@ -6,7 +6,7 @@
 /*   By: isunwoo <isunwoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:43:49 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/05/20 17:10:03 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/05/25 17:00:48 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ int main(void)
 	if (init_app(&app))
 		exit(0);
 	mlx_loop(app.pmlx);
-	//raycasting(&app);
 }
