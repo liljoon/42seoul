@@ -7,7 +7,7 @@ SRCS		:=	Bureaucrat.cpp\
 				main.cpp\
 				ShrubberyCreationForm.cpp\
 				RobotomyRequestForm.cpp\
-			#	PresidentialPardonForm.cpp\
+				PresidentialPardonForm.cpp\
 
 
 

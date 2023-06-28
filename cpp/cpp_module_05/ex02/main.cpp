@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 
 int main()
@@ -24,17 +25,34 @@ int main()
 	// }
 	// std::cout << std::endl;
 
+	// try
+	// {
+	// 	Bureaucrat br("test1", 50);
+	// 	Bureaucrat br2("test2", 40);
+
+	// 	RobotomyRequestForm robo("test_robo");
+
+	// 	br.signForm(robo);
+
+	// 	// br.executeForm(robo);
+	// 	br2.executeForm(robo);
+	// }
+	// catch (const std::exception &e)
+	// {
+	// 	std::cerr << e.what() << std::endl;
+	// }
+	// std::cout << std::endl;
 	try
 	{
-		Bureaucrat br("test1", 50);
-		Bureaucrat br2("test2", 40);
+		Bureaucrat br("test1", 1);
+		Bureaucrat br2("test2", 20);
 
-		RobotomyRequestForm robo("test_robo");
+		PresidentialPardonForm pres("test_pres");
 
-		br.signForm(robo);
+		br.signForm(pres);
 
-		// br.executeForm(robo);
-		br2.executeForm(robo);
+		// br.executeForm(pres);
+		br2.executeForm(pres);
 	}
 	catch (const std::exception &e)
 	{
