@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
 private:
 	const std::string name;
 	int grade;
+
 	class GradeTooHighException : public std::exception
 	{
 	private:
@@ -34,6 +38,7 @@ public:
 
 	void increaseGrade();
 	void decreaseGrade();
+	void signForm(Form &form);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b);
