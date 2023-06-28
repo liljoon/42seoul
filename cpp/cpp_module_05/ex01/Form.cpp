@@ -25,7 +25,7 @@ Form::Form(const Form &other) : name(other.name), isSigned(false), signGrade(oth
 {
 }
 
-Form Form::operator=(const Form &other)
+Form &Form::operator=(const Form &other)
 {
 	isSigned = other.isSigned;
 
