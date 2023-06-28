@@ -6,106 +6,108 @@
 /*   By: isunwoo <isunwoo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:38:53 by isunwoo           #+#    #+#             */
-/*   Updated: 2023/05/25 17:00:41 by isunwoo          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:08:04 by isunwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_line(t_cub3d_info *app, int screen_x, double wall_height)
+void	init_ray_info1(t_raycasting_info *rc, t_cub3d_info *app, int ray_count)
 {
-	int	y;
+	rc->camera_x = 2 * ray_count / (double)SCNWIDTH - 1;
+	rc->ray_dir_x = app->dir_x + app->plane_x * rc->camera_x;
+	rc->ray_dir_y = app->dir_y + app->plane_y * rc->camera_x;
+	rc->map_x = (int)app->player_x;
+	rc->map_y = (int)app->player_y;
+	rc->delta_dist_x = fabs(1 / rc->ray_dir_x);
+	rc->delta_dist_y = fabs(1 / rc->ray_dir_y);
+}
 
-	y = 0;
-	while (y < app->screen_heigth)
+void	init_ray_info2(t_raycasting_info *rc, t_cub3d_info *app)
+{
+	if (rc->ray_dir_x < 0)
 	{
-		if (y >= app->screen_heigth / 2 - wall_height / 2 && y < app->screen_heigth / 2 + wall_height / 2)
-			mlx_pixel_put(app->pmlx, app->pmlx_win, screen_x, y, 0xFF0000);
-		else
-			mlx_pixel_put(app->pmlx, app->pmlx_win, screen_x, y, 0x000000);
-		y++;
+		rc->step_x = -1;
+		rc->side_dist_x = (app->player_x - rc->map_x) * rc->delta_dist_x;
+	}
+	else
+	{
+		rc->step_x = 1;
+		rc->side_dist_x = (rc->map_x + 1.0 - app->player_x) * rc->delta_dist_x;
+	}
+	if (rc->ray_dir_y < 0)
+	{
+		rc->step_y = -1;
+		rc->side_dist_y = (app->player_y - rc->map_y) * rc->delta_dist_y;
+	}
+	else
+	{
+		rc->step_y = 1;
+		rc->side_dist_y = (rc->map_y + 1.0 - app->player_y) * rc->delta_dist_y;
 	}
 }
 
-void ray_check(t_cub3d_info *app, int ray_count)
+void	ddf(t_cub3d_info *app, t_raycasting_info *rc)
 {
-	double cameraX = 2 * ray_count / (double)app->screen_width - 1; // x-coordinate in camera space
-	double rayDirX = app->dirX + app->planeX * cameraX;
-	double rayDirY = app->dirY + app->planeY * cameraX;
-	int mapX = (int)app->player_x;
-	int mapY = (int)app->player_y;
-	double sideDistX;
-	double sideDistY;
-
-	double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
-	double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
-	double perpWallDist;
-	int stepX;
-	int stepY;
-
-	int hit = 0; // was there a wall hit?
-	int side;	 // was a NS or a EW wall hit?
-	// calculate step and initial sideDist
-	if (rayDirX < 0)
+	rc->hit = 0;
+	while (rc->hit == 0)
 	{
-		stepX = -1;
-		sideDistX = (app->player_x - mapX) * deltaDistX;
-	}
-	else
-	{
-		stepX = 1;
-		sideDistX = (mapX + 1.0 - app->player_x) * deltaDistX;
-	}
-	if (rayDirY < 0)
-	{
-		stepY = -1;
-		sideDistY = (app->player_y - mapY) * deltaDistY;
-	}
-	else
-	{
-		stepY = 1;
-		sideDistY = (mapY + 1.0 - app->player_y) * deltaDistY;
-	}
-	// perform DDA
-	while (hit == 0)
-	{
-		// jump to next map square, either in x-direction, or in y-direction
-		if (sideDistX < sideDistY)
+		if (rc->side_dist_x < rc->side_dist_y)
 		{
-			sideDistX += deltaDistX;
-			mapX += stepX;
-			side = 0;
+			rc->side_dist_x += rc->delta_dist_x;
+			rc->map_x += rc->step_x;
+			rc->side = 0;
 		}
 		else
 		{
-			sideDistY += deltaDistY;
-			mapY += stepY;
-			side = 1;
+			rc->side_dist_y += rc->delta_dist_y;
+			rc->map_y += rc->step_y;
+			rc->side = 1;
 		}
-		// Check if ray has hit a wall
-		if (app->map[mapY][mapX] > 0)
-			hit = 1;
+		if (app->map[rc->map_y][rc->map_x] > 0)
+			rc->hit = 1;
 	}
-
-	if (side == 0)
-		perpWallDist = (sideDistX - deltaDistX);
-	else
-		perpWallDist = (sideDistY - deltaDistY);
-
-	int wall_height = (int)((app->screen_heigth / 2) / perpWallDist);
-	draw_line(app, ray_count, wall_height);
 }
 
-int raycasting(t_cub3d_info *app)
+void	ray_check(t_cub3d_info *app, int ray_count)
 {
-	double	ray_angle;
+	t_raycasting_info	rc;
+
+	init_ray_info1(&rc, app, ray_count);
+	init_ray_info2(&rc, app);
+	ddf(app, &rc);
+	if (rc.side == 0)
+		rc.perp_wall_dist = (rc.side_dist_x - rc.delta_dist_x);
+	else
+		rc.perp_wall_dist = (rc.side_dist_y - rc.delta_dist_y);
+	rc.wall_height = (int)((SCNHEIGHT / 2) / rc.perp_wall_dist);
+	if (rc.side == 0)
+		rc.wall_x = app->player_y + rc.perp_wall_dist * rc.ray_dir_y;
+	else
+		rc.wall_x = app->player_x + rc.perp_wall_dist * rc.ray_dir_x;
+	rc.wall_x -= floor((rc.wall_x));
+	rc.tex_x = (int)(rc.wall_x * (double)(TEXWIDTH));
+	if (rc.side == 0 && rc.ray_dir_x > 0)
+		rc.tex_x = TEXWIDTH - rc.tex_x - 1;
+	if (rc.side == 1 && rc.ray_dir_y < 0)
+		rc.tex_x = TEXWIDTH - rc.tex_x - 1;
+	draw_line(app, &rc, ray_count, \
+		find_wall_dir(app, rc.map_y, rc.map_x, rc.side));
+}
+
+int	raycasting(t_cub3d_info *app)
+{
 	int		ray_count;
 
+	check_player_move(app);
+	if (app->player_rotating[0] || app->player_rotating[1])
+		player_rotate(app);
 	ray_count = 0;
-	while (ray_count < app->screen_width)
+	while (ray_count < SCNWIDTH)
 	{
 		ray_check(app, ray_count);
 		ray_count++;
 	}
+	mlx_put_image_to_window(app->pmlx, app->pmlx_win, app->buffer_img, 0, 0);
 	return (0);
 }
