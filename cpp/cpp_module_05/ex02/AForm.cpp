@@ -63,6 +63,8 @@ void AForm::checkExecute(Bureaucrat const &executor) const
 {
 	if (this->executeGrade < executor.getGrade())
 		throw GradeTooLowException();
+	if (this->isSigned == false)
+		throw NoSignException();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -83,4 +85,9 @@ std::ostream &operator<<(std::ostream &os, const AForm &f)
 	os << "executeGrade : " << f.getExecuteGrade() << std::endl;
 
 	return os;
+}
+
+const char *AForm::NoSignException::what() const throw()
+{
+	return "No sign";
 }

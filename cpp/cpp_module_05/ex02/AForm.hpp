@@ -27,6 +27,12 @@ private:
 	public:
 		const char *what() const throw();
 	};
+	class NoSignException : public std::exception
+	{
+	private:
+	public:
+		const char *what() const throw();
+	};
 
 public:
 	AForm();
