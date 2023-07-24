@@ -3,14 +3,21 @@ CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 LDFLAGS		:=
 
 SRCS		:=	main.cpp\
-				ScalarConverter.cpp\
+				Base.cpp\
+				A.cpp\
+				B.cpp\
+				C.cpp\
+
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
-INCS		:=	ScalarConverter.hpp\
+INCS		:=	Base.hpp\
+				A.hpp\
+				B.hpp\
+				C.hpp\
 
 
-NAME		:=	convert
+NAME		:= a.out
 
 .SUFFIXES : .cpp .o
 .cpp.o :
