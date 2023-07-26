@@ -62,7 +62,7 @@ static void print_int(int num)
 
 static bool check_float(std::string str)
 {
-	if (str[str.length() - 1] == 'f')
+	if (str[str.length() - 1] == 'f' && str != "inf" && str != "-inf")
 		return true;
 	else
 		return false;
@@ -109,7 +109,7 @@ static void print_double(double num)
 		std::cout << "int: overflow" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(num) << std::endl;
-	if (num > FLT_MAX || num < -FLT_MAX)
+	if (!(num == INFINITY || num == -INFINITY) && (num > FLT_MAX || num < -FLT_MAX))
 		std::cout << "float: overflow" << std::endl;
 	else
 		std::cout << "float: " << static_cast<float>(num) << "f" << std::endl;
