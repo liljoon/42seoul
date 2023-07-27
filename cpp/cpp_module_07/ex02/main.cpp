@@ -58,7 +58,7 @@ int main(int, char **)
 	}
 	delete[] mirror; //
 
-	std::cout << numbers.size() << std::endl;
+	std::cout << "size: " << numbers.size() << std::endl;
 
 	return 0;
 }
