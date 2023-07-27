@@ -72,7 +72,7 @@ static void print_float(float num)
 {
 	std::cout << std::fixed;
 	std::cout.precision(1);
-	if (std::isnan(num))
+	if (std::isnan(num)) // err
 		std::cout << "char: impossible" << std::endl;
 	else if (num < -128 || num > 127)
 		std::cout << "char: overflow" << std::endl;

@@ -8,8 +8,8 @@ int main()
 
 	dt.data = 123;
 
+	std::cout << &dt << std::endl;
 	temp_uint = Serializer::serialize(&dt);
-	std::cout << temp_uint << std::endl;
 	std::cout << Serializer::deserialize(temp_uint) << std::endl;
 
 	return 0;

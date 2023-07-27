@@ -74,4 +74,5 @@ int main()
 
 	identify(b);
 	identify(*b);
+	free(b);
 }
