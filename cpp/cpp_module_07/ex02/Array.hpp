@@ -9,7 +9,7 @@ class Array
 {
 private:
 	T *arr;
-	unsigned int size;
+	unsigned int len;
 
 public:
 	Array();

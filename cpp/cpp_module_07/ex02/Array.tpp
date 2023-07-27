@@ -4,7 +4,7 @@ template <typename T>
 Array<T>::Array()
 {
 	arr = NULL;
-	size = 0;
+	len = 0;
 }
 
 template <typename T>
@@ -18,16 +18,16 @@ Array<T>::~Array()
 template <typename T>
 Array<T>::Array(const Array &other)
 {
-	unsigned int other_len = other.size;
+	unsigned int other_len = other.len;
 
 	arr = new T[other_len];
-	size = other_len;
+	len = other_len;
 }
 
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &other)
 {
-	for (unsigned int i = 0; i < this->size; i++)
+	for (unsigned int i = 0; i < this->len; i++)
 		this->arr[i] = other.arr[i];
 }
 
@@ -35,14 +35,14 @@ template <typename T>
 Array<T>::Array(unsigned int n)
 {
 	arr = new T[n];
-	size = n;
+	len = n;
 	std::memset(arr, 0, sizeof(T));
 }
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
-	if (index >= size)
+	if (index >= len)
 		throw std::out_of_range("Index out of bounds!");
 	return this->arr[index];
 }
@@ -50,5 +50,5 @@ T &Array<T>::operator[](unsigned int index)
 template <typename T>
 unsigned int Array<T>::size() const
 {
-	return this->size;
+	return this->len;
 }
