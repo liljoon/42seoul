@@ -44,13 +44,24 @@ Array<T>::Array(const Array &other)
 
 	arr = new T[other_len];
 	len = other_len;
+	for (unsigned int i = 0; i < this->len; i++)
+		this->arr[i] = other.arr[i];
 }
 
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &other)
 {
+	if (arr)
+		delete[] arr;
+
+	unsigned int other_len = other.len;
+
+	arr = new T[other_len];
+	len = other_len;
 	for (unsigned int i = 0; i < this->len; i++)
 		this->arr[i] = other.arr[i];
+
+	return (*this);
 }
 
 template <typename T>
@@ -65,7 +76,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
 	if (index >= len)
-		throw std::out_of_range("Index out of bounds!");
+		throw std::exception("Index out of bounds!");
 	return this->arr[index];
 }
 
