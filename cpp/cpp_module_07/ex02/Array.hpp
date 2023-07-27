@@ -2,7 +2,7 @@
 #define ARRAY_HPP
 
 #include <cstring>
-#include <stdexcept>
+#include <exception>
 
 template <typename T>
 class Array
@@ -79,7 +79,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
 	if (index >= len)
-		throw std::exception("Index out of bounds!");
+		throw std::exception();
 	return this->arr[index];
 }
 
