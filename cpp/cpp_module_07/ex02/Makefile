@@ -9,7 +9,6 @@ SRCS		:=	main.cpp\
 OBJS		:=	$(SRCS:.cpp=.o)
 
 INCS		:=	Array.hpp\
-				Array.tpp\
 
 NAME		:= a.out
 
