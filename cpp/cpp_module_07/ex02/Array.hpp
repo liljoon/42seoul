@@ -25,7 +25,7 @@ public:
 template <typename T>
 Array<T>::Array()
 {
-	arr = NULL;
+	arr = new T[0];
 	len = 0;
 }
 
@@ -72,7 +72,7 @@ Array<T>::Array(unsigned int n)
 {
 	arr = new T[n];
 	len = n;
-	std::memset(arr, 0, sizeof(T));
+	std::memset(arr, 0, sizeof(T) * n);
 }
 
 template <typename T>

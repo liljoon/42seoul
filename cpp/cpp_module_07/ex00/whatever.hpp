@@ -16,10 +16,10 @@ void swap(T &a, T &b)
 template <typename T>
 T min(T a, T b)
 {
-	if (a >= b)
-		return b;
-	else
+	if (a < b)
 		return a;
+	else
+		return b;
 }
 
 template <typename T>

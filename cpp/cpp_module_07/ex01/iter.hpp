@@ -8,4 +8,11 @@ void iter(T *arr, int len, void (*func)(T))
 		func(arr[i]);
 }
 
+template <typename T>
+void iter(T *arr, int len, void (*func)(T const &))
+{
+	for (int i = 0; i < len; i++)
+		func(arr[i]);
+}
+
 #endif
