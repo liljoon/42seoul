@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <stdexcept>
 
-template <typename Container>
-typename Container::iterator easyfind(Container &con, const int &target)
+template <typename T>
+typename T::iterator easyfind(T &con, const int &target)
 {
-	typename Container::iterator it;
+	typename T::iterator it;
 	it = std::find(con.begin(), con.end(), target);
 
 	if (it == con.end())
