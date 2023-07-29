@@ -26,7 +26,7 @@ public:
 template <typename T>
 Array<T>::Array()
 {
-	arr = new T[0];
+	arr = new T[0]();
 	len = 0;
 }
 
@@ -43,7 +43,7 @@ Array<T>::Array(const Array &other)
 {
 	unsigned int other_len = other.len;
 
-	arr = new T[other_len];
+	arr = new T[other_len]();
 	len = other_len;
 	for (unsigned int i = 0; i < this->len; i++)
 		this->arr[i] = other.arr[i];
@@ -60,7 +60,7 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 
 	unsigned int other_len = other.len;
 
-	arr = new T[other_len];
+	arr = new T[other_len]();
 	len = other_len;
 	for (unsigned int i = 0; i < this->len; i++)
 		this->arr[i] = other.arr[i];
@@ -71,9 +71,8 @@ Array<T> &Array<T>::operator=(const Array<T> &other)
 template <typename T>
 Array<T>::Array(unsigned int n)
 {
-	arr = new T[n];
+	arr = new T[n]();
 	len = n;
-	std::memset(arr, 0, sizeof(T) * n);
 }
 
 template <typename T>
