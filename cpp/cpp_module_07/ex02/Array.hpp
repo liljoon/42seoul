@@ -19,6 +19,7 @@ public:
 	Array(unsigned int n);
 
 	T &operator[](unsigned int index);
+	const T &operator[](unsigned int index) const;
 	unsigned int size() const;
 };
 
@@ -77,6 +78,14 @@ Array<T>::Array(unsigned int n)
 
 template <typename T>
 T &Array<T>::operator[](unsigned int index)
+{
+	if (index >= len)
+		throw std::exception();
+	return this->arr[index];
+}
+
+template <typename T>
+const T &Array<T>::operator[](unsigned int index) const
 {
 	if (index >= len)
 		throw std::exception();
