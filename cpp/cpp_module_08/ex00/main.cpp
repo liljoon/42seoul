@@ -13,6 +13,7 @@ int main()
 	// std::deque<int> v;
 	// std::list<int> v;
 
+	// 10000개 테스트
 	for (int i = 0; i < 10; i++)
 	{
 		int temp = rand() % 100;

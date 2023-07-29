@@ -1,82 +1,107 @@
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
-#include <vector>
+#include <deque>
+#include <cstdlib>
+#include <iterator>
+#include <stack>
 
-template <typename T>
-class MutantStack
+template <typename T, typename Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container>
 {
 private:
-	vector<int> v;
 
 public:
 	MutantStack();
 	~MutantStack();
 	MutantStack(const MutantStack &other);
 	MutantStack &operator=(const MutantStack &other);
-	// canonical form
 
-	bool empty() const;
-	size_t size() const;
-	T &top();
-	const T &top() const;
-	void push(const T &val);
-	void pop();
+	typedef typename Container::iterator iterator;
+	typedef typename Container::reverse_iterator reverse_iterator;
+	typedef typename Container::const_iterator const_iterator;
+	typedef typename Container::const_reverse_iterator const_reverse_iterator;
+
+	iterator begin();
+	const_iterator begin() const;
+	iterator end();
+	const_iterator end() const;
+	reverse_iterator rbegin();
+	const_reverse_iterator rbegin() const;
+	reverse_iterator rend();
+	const_reverse_iterator rend() const;
 };
 
-template <typename T>
-MutantStack<T>::MutantStack()
+template <typename T, typename Container>
+MutantStack<T, Container>::MutantStack()
 {
 }
 
-template <typename T>
-MutantStack<T>::~MutantStack()
+template <typename T, typename Container>
+MutantStack<T, Container>::~MutantStack()
 {
 }
 
-template <typename T>
-MutantStack<T>::MutantStack(const MutantStack<T> &other)
+template <typename T, typename Container>
+MutantStack<T, Container>::MutantStack(const MutantStack &other)
 {
+	this->c = other.c;
 }
 
-template <typename T>
-MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &other)
+template <typename T, typename Container>
+MutantStack<T, Container> &MutantStack<T, Container>::operator=(const MutantStack &other)
 {
+	if (this != &other)
+		this->c = other.c;
 	return (*this);
 }
 
-template <typename T>
-bool MutantStack<T>::empty() const
+template <typename T, typename Container>
+typename Container::iterator MutantStack<T, Container>::begin()
 {
-	return false;
+	return this->c.begin();
 }
 
-template <typename T>
-size_t MutantStack<T>::size() const
+template <typename T, typename Container>
+typename Container::const_iterator MutantStack<T, Container>::begin() const
 {
-	return size_t();
+	return this->c.begin();
 }
 
-template <typename T>
-T &MutantStack<T>::top()
+template <typename T, typename Container>
+typename Container::iterator MutantStack<T, Container>::end()
 {
-	// TODO: insert return statement here
+	return this->c.end();
 }
 
-template <typename T>
-const T &MutantStack<T>::top() const
+template <typename T, typename Container>
+typename Container::const_iterator MutantStack<T, Container>::end() const
 {
-	// TODO: insert return statement here
+	return this->c.end();
 }
 
-template <typename T>
-void MutantStack<T>::push(const T &val)
+template <typename T, typename Container>
+typename Container::reverse_iterator MutantStack<T, Container>::rbegin()
 {
+	return this->c.rbegin();
 }
 
-template <typename T>
-void MutantStack<T>::pop()
+template <typename T, typename Container>
+typename Container::const_reverse_iterator MutantStack<T, Container>::rbegin() const
 {
+	return this->c.rbegin();
+}
+
+template <typename T, typename Container>
+typename Container::reverse_iterator MutantStack<T, Container>::rend()
+{
+	return this->c.rend();
+}
+
+template <typename T, typename Container>
+typename Container::const_reverse_iterator MutantStack<T, Container>::rend() const
+{
+	return this->c.rend();
 }
 
 #endif
