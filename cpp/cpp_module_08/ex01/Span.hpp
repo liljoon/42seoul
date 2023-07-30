@@ -29,7 +29,7 @@ public:
 	{
 		std::vector<int> temp = v;
 
-		temp.insert(v.end(), first, last);
+		temp.insert(temp.end(), first, last);
 		if (temp.size() > max_len)
 			throw std::length_error("Max Length!");
 		else

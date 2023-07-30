@@ -9,7 +9,7 @@ OBJS		:=	$(SRCS:.cpp=.o)
 
 INCS		:=	Span.hpp\
 
-NAME		:= a.out
+NAME		:= ex01
 
 .SUFFIXES : .cpp .o
 .cpp.o :
