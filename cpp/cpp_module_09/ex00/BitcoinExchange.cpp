@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+std::vector<std::pair<std::string, double> > BitcoinExchange::db;
+
 BitcoinExchange::BitcoinExchange()
 {
 }
@@ -10,10 +12,13 @@ BitcoinExchange::~BitcoinExchange()
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
+	(void)other;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
+	(void)other;
+
 	return *this;
 }
 
@@ -21,7 +26,7 @@ void BitcoinExchange::readDB()
 {
 	std::ifstream fin;
 	std::string date;
-	double price;
+	std::string price;
 
 	try
 	{
@@ -36,12 +41,21 @@ void BitcoinExchange::readDB()
 	while (!fin.eof())
 	{
 		std::getline(fin, date, ',');
-		fin >> price;
-		db.push_back(std::make_pair<std::string, double>(date, price));
+		std::getline(fin, price);
+		if (fin.eof())
+			break;
+		db.push_back(std::make_pair(date, std::strtod(price.c_str(), NULL)));
 	}
 }
 
 void BitcoinExchange::run(const std::string &input_file)
 {
 	readDB();
+	(void)input_file;
+
+	for (size_t i = 0; i < db.size(); i++)
+	{
+		std::cout<<db[i].first<< ","<< db[i].second<<std::endl;
+	}
+
 }

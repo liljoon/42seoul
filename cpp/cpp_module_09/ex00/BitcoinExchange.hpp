@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <utility>
+#include <vector>
 
 #define DB_NAME "data.csv"
 
@@ -17,7 +18,7 @@ private:
 	BitcoinExchange(const BitcoinExchange &other);
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 
-	static std::vector<std::pair<std::string, double>> db;
+	static std::vector<std::pair<std::string, double> > db;
 	static void readDB();
 
 public:
