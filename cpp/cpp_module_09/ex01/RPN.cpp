@@ -46,7 +46,11 @@ void calc_oper(int oper, std::stack<int> &st)
 	else if (oper == MINUS)
 		result = first - second;
 	else if (oper == DIVIDE)
+	{
+		if (second == 0)
+			error_exit();
 		result = first / second;
+	}
 	else if (oper == MULTIPLY)
 		result = first * second;
 
