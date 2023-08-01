@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <utility>
-#include <vector>
+#include <map>
 
 #define DB_NAME "data.csv"
 
@@ -18,12 +18,15 @@ private:
 	BitcoinExchange(const BitcoinExchange &other);
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 
-	static std::vector<std::pair<std::string, double> > db;
+	static std::map<std::string, double> db;
 	static void readDB();
+	static void readInput(const std::string &input_file);
+	static void exec_line(const std::string &line);
+	static double findPrice(const std::string &date);
 
-public:
+public :
 
-	static void run(const std::string &input_file);
+		static void run(const std::string &input_file);
 };
 
 
