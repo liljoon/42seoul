@@ -4,21 +4,24 @@
 #include <utility>
 #include <iostream>
 #include <vector>
-#include <typeinfo>
 #include <cmath>
-
-
 
 template <typename T, int N>
 class PmergeMe
 {
 private:
+	PmergeMe();
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
+	~PmergeMe();
+
 	static std::vector<std::pair<T, T> > groups;
 	static std::vector<T> main_chain;
 	static std::vector<T> sub_chain;
 
-	static void putChain(const int &left, int right)
+	static void putChain(int left, int right)
 	{
+		right--;
 		int delta = -1;
 		for (int i = left; i <= right; i++)
 		{
@@ -85,9 +88,12 @@ public:
 		if (arr.size() % 2 == 1) // odd
 			sub_chain.push_back(arr[arr.size() - 1]);
 
-		for (size_t i = 0; i < sub_chain.size(); i++)
+		std::vector<int> JacobsthalNumber = makeJacobsthalNumber();
+		JacobsthalNumber.insert(JacobsthalNumber.begin(), 0);
+
+		for (size_t i = 0; i < JacobsthalNumber.size() - 1; i++)
 		{
-			PmergeMe::putChain(i,i);
+			PmergeMe::putChain(JacobsthalNumber[i], JacobsthalNumber[i + 1]);
 		}
 		arr = main_chain;
 	}
@@ -112,5 +118,22 @@ std::vector<T> PmergeMe<T, N>::main_chain = std::vector<T>();
 
 template <typename T, int N>
 std::vector<T> PmergeMe<T, N>::sub_chain = std::vector<T>();
+
+
+
+template <typename Container>
+bool check_error(const Container &con)
+{
+	typename Container::const_iterator it = con.begin();
+
+	while (it != con.end())
+	{
+		if (*it <= 0)
+			return false;
+		it++;
+	}
+	return true;
+}
+
 
 #endif
