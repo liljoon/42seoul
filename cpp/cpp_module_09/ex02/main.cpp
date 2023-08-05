@@ -14,7 +14,7 @@ int main()
 	// v.push_back(9);
 	// v.push_back(8);
 
-	PmergeMe<int, 10>(v);
+	PmergeMe<int, 10>::sort(v);
 
 	for(size_t i = 0;i < v.size();i++)
 		std::cout << v[i] << std::endl;
