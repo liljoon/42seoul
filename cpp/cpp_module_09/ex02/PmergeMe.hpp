@@ -7,16 +7,24 @@
 #include <typeinfo>
 #include <cmath>
 
+
+
 template <typename T, int N>
-struct PmergeMe
+class PmergeMe
 {
-	static void putChain(const int &left, int right, std::vector<T> &main_chain, const std::vector<T> &sub_chain, const std::vector<std::pair<T, T> > groups)
+private:
+	static std::vector<std::pair<T, T> > groups;
+	static std::vector<T> main_chain;
+	static std::vector<T> sub_chain;
+
+	static void putChain(const int &left, int right)
 	{
 		int delta = -1;
 		for (int i = left; i <= right; i++)
 		{
 			if (i >= static_cast<int>(groups.size()))
 			{
+
 				delta = 0;
 				break;
 			}
@@ -33,10 +41,10 @@ struct PmergeMe
 		}
 	}
 
-
-	static std::vector<int> makeJacobsthalNumber(int sub_chain_size)
+	static std::vector<int> makeJacobsthalNumber()
 	{
 		std::vector<int> ret;
+		int sub_chain_size = sub_chain.size();
 
 		int temp = 1;
 		while (temp <= sub_chain_size)
@@ -49,55 +57,60 @@ struct PmergeMe
 		return ret;
 	}
 
-	static void make_groups(std::vector<std::pair<T, T> > &v, const std::vector<T> &arr)
+	static void make_groups(const std::vector<T> &arr)
 	{
 		for (size_t i = 1; i < arr.size(); i += 2)
-			v.push_back(std::make_pair<T, T>(arr[i - 1], arr[i]));
+			groups.push_back(std::make_pair<T, T>(arr[i - 1], arr[i]));
 
-		for (size_t i = 0; i < v.size(); i++)
+		for (size_t i = 0; i < groups.size(); i++)
 		{
-			if (v[i].first < v[i].second)
-				std::swap(v[i].first, v[i].second);
+			if (groups[i].first < groups[i].second)
+				std::swap(groups[i].first, groups[i].second);
 		}
 	}
 
+public:
 	static void sort(std::vector<T> &arr)
 	{
 		if (arr.size() <= 1)
 			return;
 
-		std::vector<std::pair<T, T> > temp;
-		PmergeMe::make_groups(temp, arr);
+		PmergeMe::make_groups(arr);
 
-		PmergeMe<std::pair<T, T>, N - 1 >::sort(temp);
-		//std::sort(temp.begin(), temp.end());
+		PmergeMe<std::pair<T, T>, N - 1 >::sort(groups);
 
-		std::vector<T> main_chain;
-		std::vector<T> sub_chain;
-		for (size_t i = 0; i < temp.size(); i++) // 전부 하나씩 집어 넣고 시작.
-		{
-			//main_chain.push_back(temp[i].first);
-			sub_chain.push_back(temp[i].second);
-		}
+		for (size_t i = 0; i < groups.size(); i++)
+			sub_chain.push_back(groups[i].second);
+
 		if (arr.size() % 2 == 1) // odd
 			sub_chain.push_back(arr[arr.size() - 1]);
 
 		for (size_t i = 0; i < sub_chain.size(); i++)
 		{
-			PmergeMe::putChain(i,i, main_chain, sub_chain, temp);
+			PmergeMe::putChain(i,i);
 		}
 		arr = main_chain;
 	}
 };
 
 template <typename T>
-struct PmergeMe<T, 0>
+class PmergeMe<T, 0>
 {
+public:
 	static void sort(std::vector<T> &arr)
 	{
 		(void)arr;
 		return;
 	}
 };
+
+template <typename T, int N>
+std::vector<std::pair<T, T> > PmergeMe<T, N>::groups = std::vector<std::pair<T, T> >();
+
+template <typename T, int N>
+std::vector<T> PmergeMe<T, N>::main_chain = std::vector<T>();
+
+template <typename T, int N>
+std::vector<T> PmergeMe<T, N>::sub_chain = std::vector<T>();
 
 #endif
