@@ -27,7 +27,10 @@ int main(int argc, char **argv)
 	srand(time(0));
 
 	for (int i = 1; i < argc; i++)
+	{
 		v.push_back(std::atoi(argv[i]));
+		li.push_back(std::atoi(argv[i]));
+	}
 
 	if (!check_error(v))
 	{
@@ -50,7 +53,7 @@ int main(int argc, char **argv)
 	print_time(v.size(), ts1, ts2, "vector");
 
 	clock_gettime(CLOCK_REALTIME, &ts1);
-	// list 로 정렬
+	PmergeMe<int, 15>::sort_li(li);
 	clock_gettime(CLOCK_REALTIME, &ts2);
 	print_time(v.size(), ts1, ts2, "list");
 }
