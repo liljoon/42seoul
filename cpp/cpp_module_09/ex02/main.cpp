@@ -6,7 +6,7 @@
 
 void print_time(int len, timespec ts1, timespec ts2, std::string con_type)
 {
-	long nanotime = ts2.tv_nsec - ts1.tv_nsec;
+	long nanotime = (ts2.tv_sec - ts1.tv_sec) * 1e9 + ts2.tv_nsec - ts1.tv_nsec;
 	double ustime = nanotime / 1000.0;
 
 	std::cout << "Time to process a range of " << len << " elements with std::" << con_type << " : " << ustime << " us" << std::endl;

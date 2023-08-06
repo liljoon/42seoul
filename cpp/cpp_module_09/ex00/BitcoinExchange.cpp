@@ -50,45 +50,18 @@ bool check_date(const std::string &date)
 	int year = std::atoi(date.substr(0, 4).c_str());
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
+	int days_in_month[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+		days_in_month[2]++;
 
 	if (month == 0 || day == 0)
 		return false;
-	if ((month % 2 == 1))
-	{
-		if (month <= 7)
-		{
-			if (day > 31)
-				return false;
-			else
-			{
-				if (day > 30)
-					return false;
-			}
-		}
-	}
-	else
-	{
-		if (month <= 6)
-		{
-			if (month == 2)
-			{
-				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-				{
-					if (day > 29)
-						return false;
-				}
-				else if (day > 28)
-					return false;
-			}
-			if (day > 30)
-				return false;
-		}
-		else
-		{
-			if (day > 31)
-				return false;
-		}
-	}
+	if (month > 12)
+		return false;
+	if (days_in_month[month] < day)
+		return false;
+
 	return true;
 }
 
@@ -96,8 +69,8 @@ double BitcoinExchange::findPrice(const std::string &date)
 {
 	std::map<std::string, double>::iterator it = db.lower_bound(date);
 
-	if (it == db.find(date))
-		return db[date];
+	if (it->first == date)
+		return it->second;
 	else
 	{
 		if (it == db.begin())
@@ -135,11 +108,13 @@ void BitcoinExchange::exec_line(const std::string &line)
 
 	try
 	{
-		std::cout<< date << " => " << value <<  " = " << value * findPrice(date) << std::endl;
+		const double rate = findPrice(date);
+
+		std::cout << date << " => " << value << " = " << value * rate << std::endl;
 	}
-	catch(const std::exception &err)
+	catch (const std::exception &err)
 	{
-		std::cout << "No price" << std::endl;
+		std::cout << "Error: No price" << std::endl;
 	}
 }
 
