@@ -10,10 +10,10 @@ template <typename T, int N>
 class PmergeMe
 {
 private:
-	PmergeMe();
-	PmergeMe(const PmergeMe &other);
-	PmergeMe &operator=(const PmergeMe &other);
-	~PmergeMe();
+	PmergeMe() {};
+	PmergeMe(const PmergeMe &other) {(void)other;};
+	PmergeMe &operator=(const PmergeMe &other) {(void)other;};
+	~PmergeMe() {};
 
 	static std::vector<std::pair<T, T> > groups;
 	static std::vector<T> main_chain;
