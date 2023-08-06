@@ -2,7 +2,6 @@
 #include <vector>
 #include <cstdlib>
 #include <random>
-#include <list>
 #include <sys/time.h>
 
 void print_time(int len, timespec ts1, timespec ts2, std::string con_type)

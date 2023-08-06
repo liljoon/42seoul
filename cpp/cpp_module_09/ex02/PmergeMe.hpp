@@ -4,6 +4,7 @@
 #include <utility>
 #include <iostream>
 #include <vector>
+#include <list>
 #include <cmath>
 
 template <typename T, int N>
@@ -18,6 +19,19 @@ private:
 	static std::vector<std::pair<T, T> > groups;
 	static std::vector<T> main_chain;
 	static std::vector<T> sub_chain;
+
+	static std::vector<std::pair<T, T> > groups_li;
+	static std::vector<T> main_chain_li;
+	static std::vector<T> sub_chain_li;
+
+	template<typename li_T>
+	static li_T &getIndex_li(std::list<li_T> &li, int index)
+	{
+		typename std::list<li_T>::iterator it = li.begin();
+		std::advance(it, index);
+
+		return (*it);
+	}
 
 	static void putChain(int left, int right)
 	{
