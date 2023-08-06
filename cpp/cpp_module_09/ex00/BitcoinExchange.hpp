@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <utility>
 #include <map>
+#include <stdexcept>
 
 #define DB_NAME "data.csv"
 

@@ -51,6 +51,8 @@ bool check_date(const std::string &date)
 	int month = std::atoi(date.substr(5, 2).c_str());
 	int day = std::atoi(date.substr(8, 2).c_str());
 
+	if (month == 0 || day == 0)
+		return false;
 	if ((month % 2 == 1))
 	{
 		if (month <= 7)
@@ -72,7 +74,7 @@ bool check_date(const std::string &date)
 			{
 				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
 				{
-					if (day > 30)
+					if (day > 29)
 						return false;
 				}
 				else if (day > 28)
@@ -99,7 +101,7 @@ double BitcoinExchange::findPrice(const std::string &date)
 	else
 	{
 		if (it == db.begin())
-			throw "No price";
+			throw std::exception();
 		else
 		{
 			it--;
@@ -135,9 +137,9 @@ void BitcoinExchange::exec_line(const std::string &line)
 	{
 		std::cout<< date << " => " << value <<  " = " << value * findPrice(date) << std::endl;
 	}
-	catch(const std::string &err)
+	catch(const std::exception &err)
 	{
-		std::cout << err << std::endl;
+		std::cout << "No price" << std::endl;
 	}
 }
 
@@ -157,7 +159,6 @@ void BitcoinExchange::readInput(const std::string &input_file)
 	while (!fin.eof())
 	{
 		std::getline(fin, line);
-		//check
 		if (fin.eof() || line.size() == 0)
 			break;
 		exec_line(line);

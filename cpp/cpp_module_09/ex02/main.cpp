@@ -12,6 +12,13 @@ void print_time(int len, timespec ts1, timespec ts2, std::string con_type)
 	std::cout << "Time to process a range of " << len << " elements with std::" << con_type << " : " << ustime << " us" << std::endl;
 }
 
+void print_all(const std::vector<int> &v)
+{
+	for (size_t i = 0; i < v.size(); i++)
+		std::cout << v[i] << " ";
+	std::cout << std::endl;
+}
+
 int main(int argc, char **argv)
 {
 	if (argc == 1)
@@ -23,8 +30,6 @@ int main(int argc, char **argv)
 	std::vector<int> v;
 	std::list<int> li;
 	timespec ts1, ts2;
-
-	srand(time(0));
 
 	for (int i = 1; i < argc; i++)
 	{
@@ -38,17 +43,14 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	std::cout << "Before :\t";
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
-	std::cout << std::endl;
+	print_all(v);
 
 	clock_gettime(CLOCK_REALTIME, &ts1);
 	PmergeMe<int, 15>::sort(v);
 	clock_gettime(CLOCK_REALTIME, &ts2);
+
 	std::cout << "After : \t";
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
-	std::cout << std::endl;
+	print_all(v);
 
 	print_time(v.size(), ts1, ts2, "vector");
 
